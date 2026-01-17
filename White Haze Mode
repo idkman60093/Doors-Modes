@@ -1,0 +1,132 @@
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
+local Lighting = game:GetService("Lighting")
+
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+-- ===== GUI =====
+local gui = Instance.new("ScreenGui")
+gui.Name = "WhiteHazeGUI"
+gui.ResetOnSpawn = false
+gui.Parent = player:WaitForChild("PlayerGui")
+
+-- Title
+local title = Instance.new("TextLabel")
+title.Size = UDim2.fromScale(1, 0.12)
+title.Position = UDim2.fromScale(0, 0.85)
+title.BackgroundTransparency = 1
+title.Text = "White Haze Mode"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextStrokeTransparency = 0.2
+title.TextTransparency = 1
+title.Font = Enum.Font.GothamBold
+title.TextScaled = true
+title.Parent = gui
+
+local function ShowTitle()
+	local fadeIn = TweenService:Create(title, TweenInfo.new(1), {TextTransparency = 0})
+	fadeIn:Play()
+	task.delay(3, function()
+		local fadeOut = TweenService:Create(title, TweenInfo.new(1), {TextTransparency = 1})
+		fadeOut:Play()
+	end)
+end
+
+-- NÃºt Sprint
+local sprintButton = Instance.new("TextButton")
+sprintButton.Size = UDim2.fromScale(0.18, 0.18)
+sprintButton.Position = UDim2.fromScale(0.05, 0.72)
+sprintButton.Text = "SPRINT"
+sprintButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+sprintButton.TextColor3 = Color3.new(1,1,1)
+sprintButton.Font = Enum.Font.GothamBold
+sprintButton.TextScaled = true
+sprintButton.Parent = gui
+
+-- Thanh stamina
+local barBG = Instance.new("Frame")
+barBG.Size = UDim2.fromScale(0.35, 0.03)
+barBG.Position = UDim2.fromScale(0.05, 0.68)
+barBG.BackgroundColor3 = Color3.fromRGB(40,40,40)
+barBG.Parent = gui
+
+local bar = Instance.new("Frame")
+bar.Size = UDim2.fromScale(1,1)
+bar.BackgroundColor3 = Color3.fromRGB(255,255,255)
+bar.Parent = barBG
+
+-- ===== WHITE HAZE FOG =====
+local FOG_ON = true
+
+local function ApplyFog()
+	Lighting.FogStart = 15
+	Lighting.FogEnd = 90
+	Lighting.FogColor = Color3.fromRGB(235, 235, 235)
+end
+
+local function EnableWhiteHaze()
+	local tween = TweenService:Create(
+		Lighting,
+		TweenInfo.new(2, Enum.EasingStyle.Sine, Enum.EasingDirection.Out),
+		{ FogStart = 15, FogEnd = 90, FogColor = Color3.fromRGB(235,235,235) }
+	)
+	tween:Play()
+	ShowTitle()
+end
+
+task.spawn(function()
+	while true do
+		task.wait(0.5)
+		if FOG_ON then
+			ApplyFog()
+		end
+	end
+end)
+
+-- ===== SPRINT SYSTEM (TOGGLE) =====
+local NORMAL_SPEED = 16
+local SPRINT_SPEED = 26
+
+local stamina = 100
+local maxStamina = 100
+local exhausted = false
+local sprinting = false
+
+sprintButton.MouseButton1Click:Connect(function()
+	if exhausted then return end
+	sprinting = not sprinting
+end)
+
+RunService.RenderStepped:Connect(function(dt)
+	local moving = humanoid.MoveDirection.Magnitude > 0
+
+	if sprinting and moving and stamina > 0 then
+		humanoid.WalkSpeed = SPRINT_SPEED
+		stamina -= 35 * dt
+
+		if stamina <= 0 then
+			stamina = 0
+			exhausted = true
+			sprinting = false
+			humanoid.WalkSpeed = NORMAL_SPEED
+		end
+	else
+		humanoid.WalkSpeed = NORMAL_SPEED
+		if stamina < maxStamina then
+			stamina += 20 * dt
+			if stamina >= maxStamina then
+				stamina = maxStamina
+				exhausted = false
+			end
+		end
+	end
+
+	bar.Size = UDim2.fromScale(stamina / maxStamina, 1)
+end)
+
+-- Tá»± báº­t White Haze sau 3 giÃ¢y
+task.wait(3)
+EnableWhiteHaze()
