@@ -1,0 +1,4 @@
+spawn(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/binhlforsaken156-sys/OVERDOORS-V2.5/refs/heads/main/OVERDOORS-V2.5-by-chu-be-te-liet.lua"))()
+spawn(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/IdkMyNameLoll/PublicScripts/refs/heads/main/c00lkiddSeek"))()
