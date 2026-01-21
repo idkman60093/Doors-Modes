@@ -1,0 +1,100 @@
+local cue2 = Instance.new("Sound")
+cue2.Parent = game.Workspace
+cue2.Name = "Spawn"
+cue2.SoundId = "rbxassetid://6863021504"
+cue2.Volume = 9999
+cue2.PlaybackSpeed = 1
+cue2:Play()
+
+if game.Workspace:FindFirstChild("SeekMovingNewClone") then return end
+
+---====== Load spawner ======---
+
+local spawner = loadstring(game:HttpGet(
+    "https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/V2/Source.lua"
+))()
+
+---====== Create entity ======---
+
+local entity = spawner.Create({
+    Entity = {
+        Name = "Z88",
+        Asset = "rbxassetid://76660923994857",
+        HeightOffset = 0
+    },
+
+    Lights = {
+        Flicker = {
+            Enabled = true,
+            Duration = 15
+        },
+        Shatter = false,
+        Repair = false
+    },
+
+    Earthquake = {
+        Enabled = false
+    },
+
+    Movement = {
+        Speed = 655,
+        Delay = 20,
+        Reversed = false
+    },
+
+    Rebounding = {
+        Enabled = true,
+        Type = "Ambush",
+        Min = 10,
+        Max = 15,
+        Delay = 0
+    },
+
+    Damage = {
+        Enabled = true,
+        Range = 75,
+        Amount = 99
+    },
+
+    Crucifixion = {
+        Enabled = true,
+        Range = 40,
+        Resist = false,
+        Break = true
+    },
+
+    Death = {
+        Type = "Guiding",
+        Hints = {
+            "You died to ...",
+            "I Dont remember HIM here..."
+        },
+        Cause = "Z88"
+    }
+})
+
+---====== Debug callbacks ======---
+
+entity:SetCallback("OnSpawned", function()
+    print("Z88 spawned")
+end)
+
+entity:SetCallback("OnStartMoving", function()
+    print("Z88 moving")
+end)
+
+entity:SetCallback("OnRebounding", function(start)
+    if start then
+        print("Z88 rebounding")
+    end
+end)
+
+entity:SetCallback("OnDamagePlayer", function(hp)
+    if hp <= 0 then
+        print("Player died to Z88")
+    end
+end)
+
+---====== Run entity ======---
+
+entity:Run()
