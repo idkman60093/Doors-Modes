@@ -1,0 +1,17 @@
+_G.msrhyan_config_sprint = {
+timetospeedexpire = 25, -- TIME TO EXPIRE STAMINA ( 0 = INFINITE )
+cooldowntime = 5,
+sprintspeed = 50,
+speedapplytime = 0.3,
+speedremovetime = 0.5,
+staminarecovertime = 10,
+effectfadetime = 0.2,
+showstaminamessages = true,
+customstaminamessage = "SUA STAMINA ACABOU, AGUARDE %ds!",
+enableeffects = true,
+effectcolor = {100, 200, 255},
+staminabarcolor = {0, 162, 255},
+sprintfov = 120,
+normalfov = 70,
+usewhileloading = false,
+}
