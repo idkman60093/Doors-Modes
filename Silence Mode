@@ -28,16 +28,16 @@ end)
 
 local entityList = {
 {url =
-"https://raw.githubusercontent.com/Junbbinopro/350-entity/refs/heads/main/350", delay = 174},
-{url = "https://raw.githubusercontent.com/Junbbinopro/Shocker-entity/refs/heads/main/Shocker", delay = 26},
+"https://raw.githubusercontent.com/Junbbinopro/350-entity/refs/heads/main/350", delay = 200},
+{url = "https://raw.githubusercontent.com/Junbbinopro/Shocker-entity/refs/heads/main/Shocker", delay = 10},
 {url =
 "https://pastefy.app/ofutwkjb/raw", delay = 86},
-{url = "https://raw.githubusercontent.com/Junbbinopro/Trauma-entity/refs/heads/main/Trauma", delay = 199},
+{url = "https://raw.githubusercontent.com/Junbbinopro/Trauma-entity/refs/heads/main/Trauma", delay = 160},
 {url = "https://raw.githubusercontent.com/Junbbinopro/Munci-entity/refs/heads/main/Munci-20", delay = 333},
 {url = "https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Z88", delay = 268},
-{url = "https://raw.githubusercontent.com/Junbbinopro/Surge-entity/refs/heads/main/Surge", delay = 399},
+{url = "https://raw.githubusercontent.com/Junbbinopro/Surge-entity/refs/heads/main/Surge", delay = 430},
 {url =
-"https://raw.githubusercontent.com/trungdepth-dot/Him-entity-doors/refs/heads/main/Him", delay = 110},
+"https://raw.githubusercontent.com/trungdepth-dot/Him-entity-doors/refs/heads/main/Him", delay = 150},
 }
 
 for _, entity in ipairs(entityList) do
