@@ -34,9 +34,9 @@ local entityList = {
 {url =
 "https://pastefy.app/ofutwkjb/raw", delay = 69},
 {url = "https://raw.githubusercontent.com/Junbbinopro/Trauma-entity/refs/heads/main/Trauma", delay = 167},
-{url = "https://raw.githubusercontent.com/Junbbinopro/Munci-entity/refs/heads/main/Munci-20", delay = 434},
-{url = "https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Z88", delay = 299},
-{url = "https://raw.githubusercontent.com/Junbbinopro/Surge-entity/refs/heads/main/Surge", delay = 470},
+{url = "https://raw.githubusercontent.com/Junbbinopro/Munci-entity/refs/heads/main/Munci-20", delay = 500},
+{url = "https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Z88", delay = 342},
+{url = "https://raw.githubusercontent.com/Junbbinopro/Surge-entity/refs/heads/main/Surge", delay = 577},
 {url =
 "https://raw.githubusercontent.com/trungdepth-dot/Him-entity-doors/refs/heads/main/Him", delay = 200},
 {url =
@@ -46,7 +46,7 @@ local entityList = {
 {url =
 "https://github.com/PABMAXICHAC/doors-monsters-scripts/raw/main/blinkcrux", delay = 152},
 {url =
-"https://raw.githubusercontent.com/Junbbinopro/Hungerd/refs/heads/main/Entity", delay = 430},
+"https://raw.githubusercontent.com/Junbbinopro/Hungerd/refs/heads/main/Entity", delay = 650},
 }
 
 for _, entity in ipairs(entityList) do
