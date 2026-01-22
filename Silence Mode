@@ -32,7 +32,7 @@ local entityList = {
 "https://raw.githubusercontent.com/Junbbinopro/350-entity/refs/heads/main/350", delay = 200},
 {url = "https://raw.githubusercontent.com/Junbbinopro/Shocker-entity/refs/heads/main/Shocker", delay = 15},
 {url =
-"https://pastefy.app/ofutwkjb/raw", delay = 86},
+"https://pastefy.app/ofutwkjb/raw", delay = 69},
 {url = "https://raw.githubusercontent.com/Junbbinopro/Trauma-entity/refs/heads/main/Trauma", delay = 167},
 {url = "https://raw.githubusercontent.com/Junbbinopro/Munci-entity/refs/heads/main/Munci-20", delay = 383},
 {url = "https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Z88", delay = 268},
@@ -40,7 +40,7 @@ local entityList = {
 {url =
 "https://raw.githubusercontent.com/trungdepth-dot/Him-entity-doors/refs/heads/main/Him", delay = 160},
 {url =
-"https://raw.githubusercontent.com/Junbbinopro/Bluyer-entity/refs/heads/main/Bluyer", delay = 77},
+"https://raw.githubusercontent.com/Junbbinopro/Bluyer-entity/refs/heads/main/Bluyer", delay = 47},
 {url =
 "https://raw.githubusercontent.com/Junbbinopro/Black-smile/refs/heads/main/Black", delay = 500},
 {url =
