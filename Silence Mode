@@ -4,7 +4,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Doors-Mod
 
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
 
-require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Silence Mode Initiated", true)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Silence Mode V2 Initiated", true)
 wait(2)
 require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Credits to the owner of all entities in this mode", true)
 
@@ -32,12 +32,20 @@ local entityList = {
 {url = "https://raw.githubusercontent.com/Junbbinopro/Shocker-entity/refs/heads/main/Shocker", delay = 10},
 {url =
 "https://pastefy.app/ofutwkjb/raw", delay = 86},
-{url = "https://raw.githubusercontent.com/Junbbinopro/Trauma-entity/refs/heads/main/Trauma", delay = 160},
-{url = "https://raw.githubusercontent.com/Junbbinopro/Munci-entity/refs/heads/main/Munci-20", delay = 333},
+{url = "https://raw.githubusercontent.com/Junbbinopro/Trauma-entity/refs/heads/main/Trauma", delay = 167},
+{url = "https://raw.githubusercontent.com/Junbbinopro/Munci-entity/refs/heads/main/Munci-20", delay = 383},
 {url = "https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Z88", delay = 268},
-{url = "https://raw.githubusercontent.com/Junbbinopro/Surge-entity/refs/heads/main/Surge", delay = 430},
+{url = "https://raw.githubusercontent.com/Junbbinopro/Surge-entity/refs/heads/main/Surge", delay = 470},
 {url =
-"https://raw.githubusercontent.com/trungdepth-dot/Him-entity-doors/refs/heads/main/Him", delay = 150},
+"https://raw.githubusercontent.com/trungdepth-dot/Him-entity-doors/refs/heads/main/Him", delay = 160},
+{url =
+"https://raw.githubusercontent.com/Junbbinopro/Bluyer-entity/refs/heads/main/Bluyer", delay = 100},
+{url =
+"https://raw.githubusercontent.com/Junbbinopro/Black-smile/refs/heads/main/Black", delay = 500},
+{url =
+"https://github.com/PABMAXICHAC/doors-monsters-scripts/raw/main/blinkcrux", delay = 40},
+{url =
+"https://raw.githubusercontent.com/Junbbinopro/Hungerd/refs/heads/main/Entity", delay = 430},
 }
 
 for _, entity in ipairs(entityList) do
