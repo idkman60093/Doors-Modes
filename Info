@@ -26,7 +26,7 @@ bigInfo.TextScaled = true
 bigInfo.Visible = false
 bigInfo.Text = [[
 If u see this message that means youre stuck in silent hotel many entities are trying to hunt you down
-So try escape this hotel as soon as possible
+So try escape this hotel
 ]]
 bigInfo.Parent = gui
 
