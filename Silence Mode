@@ -40,11 +40,11 @@ local entityList = {
 {url =
 "https://raw.githubusercontent.com/trungdepth-dot/Him-entity-doors/refs/heads/main/Him", delay = 160},
 {url =
-"https://raw.githubusercontent.com/Junbbinopro/Bluyer-entity/refs/heads/main/Bluyer", delay = 100},
+"https://raw.githubusercontent.com/Junbbinopro/Bluyer-entity/refs/heads/main/Bluyer", delay = 57},
 {url =
 "https://raw.githubusercontent.com/Junbbinopro/Black-smile/refs/heads/main/Black", delay = 500},
 {url =
-"https://github.com/PABMAXICHAC/doors-monsters-scripts/raw/main/blinkcrux", delay = 40},
+"https://github.com/PABMAXICHAC/doors-monsters-scripts/raw/main/blinkcrux", delay = 120},
 {url =
 "https://raw.githubusercontent.com/Junbbinopro/Hungerd/refs/heads/main/Entity", delay = 430},
 }
