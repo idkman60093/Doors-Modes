@@ -6,7 +6,7 @@ require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("
 wait(2)
 require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Credits to the owner of all entities in this mode", true)
 wait(2)
-require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Sorry if it similar to Fragmented Mode V5 that was made by Nhankgnew", true)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Sorry if it similar to Ultra Hard Mode V2 that was made by Zunxd", true)
 
 
 local cue2 = Instance.new("Sound")
@@ -30,13 +30,17 @@ end)
 local entityList = {
 {url =
 "https://raw.githubusercontent.com/Junbbinopro/Horror-face/refs/heads/main/Entity", delay = 90},
-{url = "https://raw.githubusercontent.com/Junbbinopro/look-at-me/refs/heads/main/Entity", delay = 180},
+{url = "https://raw.githubusercontent.com/Junbbinopro/look-at-me/refs/heads/main/Entity", delay = 190},
 {url =
 "https://raw.githubusercontent.com/Junbbinopro/CG-55-remake/refs/heads/main/Entity", delay = 230},
 {url = "https://raw.githubusercontent.com/Junbbinopro/Smile-face/refs/heads/main/Entityy", delay = 340},
 {url = "https://raw.githubusercontent.com/Junbbinopro/Z-404-remake/refs/heads/main/Entity", delay = 520},
 {url = "https://raw.githubusercontent.com/Junbbinopro/200-remake/refs/heads/main/Entity", delay = 434},
 {url = "https://raw.githubusercontent.com/Junbbinopro/Scary-face-remake/refs/heads/main/Entity", delay = 577},
+{url =
+"https://raw.githubusercontent.com/Junbbinopro/Blue-face-remake/refs/heads/main/Entity", delay = 640},
+{url =
+"https://raw.githubusercontent.com/Junbbinopro/G-95-v2/refs/heads/main/Entity", delay = 270},
 }
 
 for _, entity in ipairs(entityList) do
