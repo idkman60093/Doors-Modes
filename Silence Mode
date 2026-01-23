@@ -1,4 +1,6 @@
-require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Silence Mode Made by Rip_Silence (#idkman06483)", true)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Silence Mode Has Actived", true)
+wait(2)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Made By Rip_Silence (#idkman06483)", true)
 
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
 
@@ -42,6 +44,8 @@ local entityList = {
 {url =
 "https://raw.githubusercontent.com/Junbbinopro/Bluyer-entity/refs/heads/main/Bluyer", delay = 47},
 {url =
+"https://raw.githubusercontent.com/Junbbinopro/Depth-v2/refs/heads/main/Entity", delay = 95},
+{url =
 "https://raw.githubusercontent.com/Junbbinopro/Black-smile/refs/heads/main/Black", delay = 583},
 {url =
 "https://github.com/PABMAXICHAC/doors-monsters-scripts/raw/main/blinkcrux", delay = 152},
@@ -49,6 +53,8 @@ local entityList = {
 "https://raw.githubusercontent.com/Junbbinopro/Hungerd/refs/heads/main/Entity", delay = 650},
 {url =
 "https://raw.githubusercontent.com/J63633S/Laver-mode/refs/heads/main/Chaotic", delay = 433},
+{url =
+"https://raw.githubusercontent.com/Junbbinopro/Wh1t3-v2/refs/heads/main/Entity", delay = 260},
 }
 
 for _, entity in ipairs(entityList) do
