@@ -29,8 +29,8 @@ end)
 
 local entityList = {
 {url =
-"https://raw.githubusercontent.com/Junbbinopro/Horror-face/refs/heads/main/Entity", delay = 38},
-{url = "https://raw.githubusercontent.com/Junbbinopro/look-at-me/refs/heads/main/Entity", delay = 30},
+"https://raw.githubusercontent.com/Junbbinopro/Horror-face/refs/heads/main/Entity", delay = 56},
+{url = "https://raw.githubusercontent.com/Junbbinopro/look-at-me/refs/heads/main/Entity", delay = 80},
 {url =
 "https://raw.githubusercontent.com/Junbbinopro/CG-55-remake/refs/heads/main/Entity", delay = 230},
 {url = "https://raw.githubusercontent.com/Junbbinopro/Smile-face/refs/heads/main/Entityy", delay = 340},
