@@ -1,0 +1,51 @@
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Scary Mode Made by Rip_Silence (#idkman06483)", true)
+
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Scary Mode Initiated", true)
+wait(2)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Credits to the owner of all entities in this mode", true)
+wait(2)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Sorry if it similar to Fragmented Mode V5 that was made by Nhankgnew", true)
+
+
+local cue2 = Instance.new("Sound")
+cue2.Parent = game.Workspace
+cue2.Name = "Spawn"
+cue2.SoundId = "rbxassetid://9113731836"
+cue2.Volume = 3
+cue2.PlaybackSpeed = 1
+cue2.Looped = true
+cue2:Play()
+
+pcall(function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Sprint%20Stamina"))()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Intro%20Scary%20Mode"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/eoyoustme/ohh/refs/heads/main/Guiding"))()
+
+end)
+
+local entityList = {
+{url =
+"https://raw.githubusercontent.com/Junbbinopro/Horror-face/refs/heads/main/Entity", delay = 38},
+{url = "https://raw.githubusercontent.com/Junbbinopro/look-at-me/refs/heads/main/Entity", delay = 30},
+{url =
+"https://raw.githubusercontent.com/Junbbinopro/CG-55-remake/refs/heads/main/Entity", delay = 230},
+{url = "https://raw.githubusercontent.com/Junbbinopro/Smile-face/refs/heads/main/Entityy", delay = 340},
+{url = "https://raw.githubusercontent.com/Junbbinopro/Z-404-remake/refs/heads/main/Entity", delay = 520},
+{url = "https://raw.githubusercontent.com/Junbbinopro/200-remake/refs/heads/main/Entity", delay = 434},
+{url = "https://raw.githubusercontent.com/Junbbinopro/Scary-face-remake/refs/heads/main/Entity", delay = 577},
+}
+
+for _, entity in ipairs(entityList) do
+coroutine.wrap(function()
+while true do
+wait(entity.delay)
+pcall(function()
+loadstring(game:HttpGet(entity.url))()
+end)
+end
+end)()
+end
