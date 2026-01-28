@@ -1,0 +1,92 @@
+-- Doors Modes Hub V1 By Rip_Silence (#idkman06483)
+-- Works with most executors
+
+local player = game.Players.LocalPlayer
+local gui = Instance.new("ScreenGui")
+gui.Name = "DoorsScriptLoader"
+gui.ResetOnSpawn = false
+gui.Parent = player:WaitForChild("PlayerGui")
+
+local frame = Instance.new("Frame", gui)
+frame.Size = UDim2.fromScale(0.35, 0.5)
+frame.Position = UDim2.fromScale(0.325, 0.25)
+frame.BackgroundColor3 = Color3.fromRGB(25,25,25)
+frame.BorderSizePixel = 0
+frame.Active = true
+frame.Draggable = true
+
+local corner = Instance.new("UICorner", frame)
+corner.CornerRadius = UDim.new(0,12)
+
+local title = Instance.new("TextLabel", frame)
+title.Size = UDim2.new(1,0,0.12,0)
+title.Text = "]---[Doors Modes Hub V1]---["
+title.TextColor3 = Color3.new(1,1,1)
+title.BackgroundTransparency = 1
+title.Font = Enum.Font.GothamBold
+title.TextScaled = true
+
+local layout = Instance.new("UIListLayout", frame)
+layout.Padding = UDim.new(0,10)
+layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+layout.VerticalAlignment = Enum.VerticalAlignment.Top
+layout.Padding = UDim.new(0,10)
+
+title.LayoutOrder = 0
+
+local function createButton(text, url)
+ local btn = Instance.new("TextButton")
+ btn.Size = UDim2.new(0.9,0,0.12,0)
+ btn.Text = text
+ btn.Font = Enum.Font.Gotham
+ btn.TextScaled = true
+ btn.TextColor3 = Color3.new(1,1,1)
+ btn.BackgroundColor3 = Color3.fromRGB(45,45,45)
+ btn.BorderSizePixel = 0
+
+ local c = Instance.new("UICorner", btn)
+ c.CornerRadius = UDim.new(0,8)
+
+ btn.MouseButton1Click:Connect(function()
+  pcall(function()
+   loadstring(game:HttpGet(url))()
+  end)
+ end)
+
+ return btn
+end
+
+-- Buttons
+createButton("[Impossible Mode]",
+"https://arch-http.vercel.app/files/Impossible-mode").Parent = frame
+
+createButton("[Hardcore Mode]",
+"https://raw.githubusercontent.com/localplayerr/Doors-stuff/refs/heads/main/Hardcore%20v4%20recreate/main%20code").Parent = frame
+
+createButton("[Fear Mode]",
+"https://raw.githubusercontent.com/lelele78/Securityproject/refs/heads/main/FEAROBF").Parent = frame
+
+createButton("[Hard Mode]",
+"https://arch-http.vercel.app/files/ProtectHard").Parent = frame
+
+-- Close button
+local close = Instance.new("TextButton", frame)
+close.Size = UDim2.new(0.9,0,0.1,0)
+close.Text = "Close GUI"
+close.Font = Enum.Font.GothamBold
+close.TextScaled = true
+close.TextColor3 = Color3.new(1,1,1)
+close.BackgroundColor3 = Color3.fromRGB(120,30,30)
+close.BorderSizePixel = 0
+Instance.new("UICorner", close).CornerRadius = UDim.new(0,8)
+
+close.MouseButton1Click:Connect(function()
+ gui:Destroy()
+end)
+
+wait(0.6)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("[CREDITS]: Credit to Voorpr0 & Guestly & Nowhywhats & Vuivuiviu2 for fixing those modes",true)
+wait(3)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Sorry if it similar to simple script loader that was made by Raddy_edits",true)
+wait(3)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Thank you for using this script hope u enjoyed it!!!",true)
