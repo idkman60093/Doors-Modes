@@ -6,3 +6,5 @@ cue2.Volume = 4
 cue2.PlaybackSpeed = 1
 cue2.Looped = false
 cue2:Play()
+wait(4.6)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Something is following you", true)
