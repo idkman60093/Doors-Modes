@@ -21,8 +21,7 @@ HeightOffset = 0
 },
 Lights = {
 Flicker = {
-Enabled = true,
-Duration = 4
+Enabled = false,
 },
 Shatter = false,
 Repair = false,
@@ -70,12 +69,12 @@ Reason = "Encounter Him",
 Image = "rbxassetid://121750734865030",
 Prize = {
 Revives = {
-Visible = false,
-Amount = 1
+Visible = true,
+Amount = 2
 },
 Knobs = {
-Visible = false,
-Amount = 100
+Visible = true,
+Amount = 1,000
 },
 Stardust = {
 Visible = false,
