@@ -34,7 +34,7 @@ CameraShake = {
 Enabled = false
 },
 Movement = {
-Speed = 450,
+Speed = 475,
 Delay = 3,
 Reversed = false
 },
@@ -42,7 +42,7 @@ Rebounding = {
 Enabled = true,
 Type = "Ambush", -- "Blitz"
 Min = 4,
-Max = 4,
+Max = 8,
 Delay = 0
 },
 Damage = {
