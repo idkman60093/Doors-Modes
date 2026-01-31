@@ -21,7 +21,7 @@ HeightOffset = 0
 },
 Lights = {
 Flicker = {
-Enabled = false,
+Enabled = true,
 Duration = 4
 },
 Shatter = false,
