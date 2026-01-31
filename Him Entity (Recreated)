@@ -69,12 +69,12 @@ Reason = "Encounter Him",
 Image = "rbxassetid://121750734865030",
 Prize = {
 Revives = {
-Visible = true,
-Amount = 2
+Visible = false,
+Amount = 1
 },
 Knobs = {
-Visible = true,
-Amount = 1,000
+Visible = false,
+Amount = 100
 },
 Stardust = {
 Visible = false,
