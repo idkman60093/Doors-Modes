@@ -1,0 +1,311 @@
+----------------------------------------------------------------
+-- JUMPSCARE HIM (KEEP AS IS)
+----------------------------------------------------------------
+local function playHimJumpscare()
+    local player = game.Players.LocalPlayer
+    local gui = player:WaitForChild("PlayerGui")
+
+    local screen = Instance.new("ScreenGui")
+    screen.IgnoreGuiInset = true
+    screen.Parent = gui
+
+    local bg = Instance.new("Frame", screen)
+    bg.Size = UDim2.new(1,0,1,0)
+    bg.BackgroundColor3 = Color3.new(0,0,0)
+
+    local face = Instance.new("ImageLabel", screen)
+    face.AnchorPoint = Vector2.new(0.5,0.5)
+    face.Position = UDim2.fromScale(0.5,0.5)
+
+    face.Size = UDim2.fromScale(0.60, 0.60)
+    face.BackgroundTransparency = 1
+    face.ImageTransparency = 1
+    face.ScaleType = Enum.ScaleType.Crop
+
+    local img1 = "rbxassetid://10601028487"
+    local img2 = "rbxassetid://10657365540"
+    face.Image = img1
+
+    local s1 = Instance.new("Sound", workspace)
+    s1.SoundId = "rbxassetid://2663254285"
+    s1.Volume = 1
+    s1:Play()
+
+    for i = 1, 46 do
+        face.ImageTransparency = 1 - (i/46)
+        task.wait(0.062)
+    end
+
+    task.wait(1.05)
+
+    face.Image = img2
+    face.Size = UDim2.fromScale(0.50, 0.50)
+
+    local s2 = Instance.new("Sound", workspace)
+    s2.SoundId = "rbxassetid://7837535984"
+    s2.Volume = 1.05
+    s2:Play()
+
+    for i = 1, 30 do
+        local rot = math.sin(i * 3.2) * 12
+        face.Rotation = rot
+        face.Size += UDim2.new(0.008, 0, 0.008, 0)
+        task.wait(0.045)
+    end
+
+    face.Rotation = 0
+    task.wait(0.08)
+    screen:Destroy()
+end
+
+
+----------------------------------------------------------------
+-- LOAD SPAWNER
+----------------------------------------------------------------
+local spawner = loadstring(game:HttpGet(
+"https://raw.githubusercontent.com/Focuslol666/Utilities/refs/heads/patch-1/Doors/Entity%20Spawner/V2/Source.lua"
+))()
+
+
+----------------------------------------------------------------
+-- ENTITY
+----------------------------------------------------------------
+local entity = spawner.Create({
+
+    Entity = {
+        Name = "Him",
+        Asset = "rbxassetid://114440873768242",
+        HeightOffset = 0
+    },
+
+    CameraShake = { Enabled = false },
+    Earthquake  = { Enabled = false },
+
+    Movement = {
+        Speed = 660,
+        Delay = 4,
+    },
+
+    Rebounding = {
+        Enabled = true,
+        Type = "Ambush",
+        Min = 7,
+        Max = 7,
+        Delay = 0
+    },
+
+    Damage = {
+        Enabled = false,
+        Range = 65,
+    },
+
+    Achievements = false,
+
+    Death = {
+        IsolationFloors = false,
+        Type = "Guiding",
+        Cause = "Him"
+    },
+
+    Jumpscare = nil
+})
+
+
+----------------------------------------------------------------
+-- KIá»‚M TRA CHá»– AN TOÃ€N
+----------------------------------------------------------------
+local CollectionService = game:GetService("CollectionService")
+
+local function isPlayerSafe()
+    local char = game.Players.LocalPlayer.Character
+    if not char then return false end
+
+    local root = char:FindFirstChild("HumanoidRootPart")
+    if not root then return false end
+
+    if char:GetAttribute("Hiding") then return true end
+    if char:GetAttribute("InHideInteraction") then return true end
+    if char:GetAttribute("Safe") then return true end
+
+    for _, spot in pairs(CollectionService:GetTagged("SafeSpot")) do
+        if root:IsDescendantOf(spot) then
+            return true
+        end
+    end
+
+    return false
+end
+
+
+----------------------------------------------------------------
+-- KIá»‚M TRA ENTITY ÄANG DI CHUYá»‚N
+----------------------------------------------------------------
+local function isEntityActive()
+    local state = entity.State
+    if not state then return true end
+
+    return state == "Running"
+        or state == "Rebounding"
+        or state == "Moving"
+end
+
+
+----------------------------------------------------------------
+-- KHÃ”NG XUYÃŠN TÆ¯á»œNG
+----------------------------------------------------------------
+local function hasLineOfSight(from, to)
+
+    local params = RaycastParams.new()
+    params.FilterType = Enum.RaycastFilterType.Blacklist
+    params.FilterDescendantsInstances = {
+        game.Players.LocalPlayer.Character,
+        workspace.CurrentCamera
+    }
+
+    local result = workspace:Raycast(from, (to - from), params)
+
+    if not result then return true end
+
+    if result.Instance:IsDescendantOf(game.Players.LocalPlayer.Character) then
+        return true
+    end
+
+    return false
+end
+
+
+----------------------------------------------------------------
+-- Láº¤Y Vá»Š TRÃ HIM
+----------------------------------------------------------------
+local function getHimPosition()
+    local him = workspace:FindFirstChild("Him")
+    if not him then return nil end
+
+    local part =
+        him.PrimaryPart
+        or him:FindFirstChild("Hitbox")
+        or him:FindFirstChild("Main")
+        or him:FindFirstChildWhichIsA("BasePart")
+
+    if not part then return nil end
+
+    return part.Position
+end
+
+
+----------------------------------------------------------------
+-- ðŸ”¥ THEO DÃ•I HIM ÄÃƒ DI CHUYá»‚N CHÆ¯A (PHáº¦N Báº N YÃŠU Cáº¦U)
+----------------------------------------------------------------
+local hasEntityMoved = false
+local lastPos = nil
+
+task.spawn(function()
+    while task.wait(0.1) do
+        local pos = getHimPosition()
+        if pos then
+            if lastPos and (pos - lastPos).Magnitude > 1 then
+                hasEntityMoved = true
+                break
+            end
+            lastPos = pos
+        end
+    end
+end)
+
+
+----------------------------------------------------------------
+-- CHá»NG Láº¶P
+----------------------------------------------------------------
+local alreadyKilled = false
+
+
+----------------------------------------------------------------
+-- CÆ  CHáº¾ KILL CHUáº¨N
+----------------------------------------------------------------
+local function tryKillPlayer()
+
+    if alreadyKilled then return end
+
+    -- ðŸ”’ CHÆ¯A DI CHUYá»‚N â†’ KHÃ”NG KILL
+    if not hasEntityMoved then
+        return
+    end
+
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    local hum = char and char:FindFirstChildOfClass("Humanoid")
+    local root = char and char:FindFirstChild("HumanoidRootPart")
+
+    if not hum or not root then return end
+    if hum.Health <= 0 then return end
+
+    if isPlayerSafe() then
+        return
+    end
+
+    local himPos = getHimPosition()
+    if not himPos then return end
+
+    if not isEntityActive() then
+        return
+    end
+
+    local RANGE = 65
+
+    local dist = (root.Position - himPos).Magnitude
+    if dist > RANGE then
+        return
+    end
+
+    if not hasLineOfSight(himPos, root.Position) then
+        return
+    end
+
+
+    ------------------------------------------------------------
+    -- KILL
+    ------------------------------------------------------------
+    alreadyKilled = true
+
+    task.spawn(function()
+
+        hum.WalkSpeed = 0
+        hum.JumpPower = 0
+
+        playHimJumpscare()
+
+        task.wait(0.15)
+
+        if hum.Health > 0 then
+            hum.Health = 0
+        end
+
+        task.wait(0.1)
+
+        pcall(function()
+            local stats = player:FindFirstChild("PlayerStats")
+            if stats and stats:FindFirstChild("LastDeath") then
+                stats.LastDeath.Value = "Him"
+            end
+        end)
+
+        if entity and entity.Kill then
+            entity:Kill(player, "Him")
+        end
+
+    end)
+end
+
+
+----------------------------------------------------------------
+-- LOOP CHECK
+----------------------------------------------------------------
+task.spawn(function()
+    task.wait(2)
+
+    while task.wait(0.05) do
+        pcall(tryKillPlayer)
+    end
+end)
+
+entity:Run()
