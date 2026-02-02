@@ -154,7 +154,7 @@ local defaultConfig = {
 	},
 	Achievements = {
 	    Survive = {
-	        Enabled = true,
+	        Enabled = false,
 	        Once = false,
 	        Title = "Secret Entity???",
 	        Desc = "!!!!!!!!!!!!",
