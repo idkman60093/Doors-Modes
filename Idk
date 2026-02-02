@@ -2,22 +2,50 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Zunxd%20Him%20Entity"))()
 
 ----------------------------------------------------------------
--- PATCH: đổi nguyên nhân chết thành "Him"
+-- PATCH UPDATE: 
 ----------------------------------------------------------------
 task.spawn(function()
     local plr = game.Players.LocalPlayer
+
+    -- Check if Him caused it
+    local function isKilledByHim()
+        -- 1. Find the Him model in the workspace
+        for _, v in pairs(workspace:GetChildren()) do
+            if v.Name:lower():find("him") then
+                return true
+            end
+        end
+
+        -- 2. Check the characteristic jumpscare sound
+        for _, s in pairs(workspace:GetDescendants()) do
+            if s:IsA("Sound") and s.IsPlaying and s.Name:lower():find("him") then
+                return true
+            end
+        end
+
+        return false
+    end
+
+    local function setCauseHim()
+        pcall(function()
+            local stats = game.ReplicatedStorage:WaitForChild("GameStats")
+            local folder = stats:WaitForChild("Player_" .. plr.Name)
+
+            local death = folder.Total:WaitForChild("DeathCause")
+
+            -- ONLY CHANGE IF IT IS TRUE
+            if isKilledByHim() then
+                death.Value = "Him"
+            end
+        end)
+    end
 
     local function hookCharacter(char)
         local hum = char:WaitForChild("Humanoid")
 
         hum.Died:Once(function()
-            pcall(function()
-                local stats = game.ReplicatedStorage:WaitForChild("GameStats")
-                local folder = stats:WaitForChild("Player_" .. plr.Name)
-                local death = folder.Total:WaitForChild("DeathCause")
-
-                death.Value = "Him"       -- 🔥 CHỖ QUAN TRỌNG
-            end)
+            task.wait(0.2)
+            setCauseHim()
         end)
     end
 
