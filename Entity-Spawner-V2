@@ -154,12 +154,12 @@ local defaultConfig = {
 	},
 	Achievements = {
 	    Survive = {
-	        Enabled = false,
+	        Enabled = true,
 	        Once = false,
-	        Title = "Survive Title",
-	        Desc = "Survive Description",
-	        Reason = "Survive Reason",
-	        Image = "rbxassetid://12309073114",
+	        Title = "Secret Entity???",
+	        Desc = "!!!!!!!!!!!!",
+	        Reason = "Survive and Encounter Him",
+	        Image = "rbxassetid://121750734865030",
 	        Prize = {
                 Revives = {
                     Visible = true,
