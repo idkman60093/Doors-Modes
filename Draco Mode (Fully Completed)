@@ -1,0 +1,9 @@
+-- Script : Draco Mode
+print("Load Script...")
+
+-- Load Script 1: Draco Mode
+task.spawn(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Draco%20Mode"))()
+end)
+
+print("Loading complete 1 Script!")
