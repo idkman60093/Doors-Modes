@@ -128,18 +128,6 @@ coroutine.wrap(function()
 end
 
 end)()
-
--- Him
-coroutine.wrap(function()
-    while true do
-        wait(90)
-        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
-        wait(0)
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Idk"))()
-
-end
-
-end)()
    
 -- Sprint stamina
 
@@ -148,3 +136,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/trungdepth-dot/Sprint
 -- Flashlight
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/binhlforsaken156-sys/Flash-light/refs/heads/main/Flash-light-V1", true))()
+
+-- Him Entity
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/%3F%3F%3F"))()
