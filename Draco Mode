@@ -1,0 +1,150 @@
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Draco Mode Has Been Executed",true)
+ wait(2)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Credits: Rip_Silence (The Creator Of This Mode),",true)
+ wait(2)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Loading Mode.....",true)
+ wait(4.6)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("The Mode Has Been Loaded",true)
+ wait(2)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Good Luck", true)
+
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Draco Mode Initiated", true)
+ wait(2)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Credits to the owner of all entities in this mode", true)
+ wait(2)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Have Fun (You will not)", true)
+
+ wait(2)
+
+--Cave ambience
+local sound = Instance.new("Sound")
+
+
+sound.SoundId = "rbxassetid://9114625745"
+
+sound.Volume = 1
+
+sound.Looped = true
+
+sound:Play()
+
+sound.Parent = workspace
+
+-- Door Changer Floor 2 And Sound
+coroutine.wrap(function()
+    while true do
+        wait(0.0005)
+workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Door.Door.Open.SoundId = "rbxassetid://18754714998"
+workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:FindFirstChild("Door"):FindFirstChild("Door").Material = "Rock"
+workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:FindFirstChild("Door"):FindFirstChild("Door"):FindFirstChild("Sign").Material = "Rock"
+    end
+end)()
+
+-- Fog 
+task.spawn(function()
+    task.wait()
+    if game:GetService("Lighting"):FindFirstChild("Atmosphere") then
+        game.Lighting.Atmosphere:Destroy()
+    end
+    game.Lighting.FogColor = Color3.new(0.133333, 0.149020, 0.239216)
+    game.Lighting.FogEnd = 55
+    game.Lighting.FogStart = 0
+end)
+
+-- goofy screech
+game.ReplicatedStorage.Entities.Screech.Top.Eyes.Color = Color3.fromRGB(176,0,0)
+game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.Screech.Caught.SoundId = "rbxassetid://17309157540"
+game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.Screech.Caught.PlaybackSpeed = 1.6
+game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.Screech.Attack.SoundId = "rbxassetid://135968179377207"
+
+-- Nightmare Rush
+coroutine.wrap(function()
+    while true do
+        wait(80)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        wait(0)
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Anctarus7105/Entities-Spawns/refs/heads/main/Nightmare%20Rush"))()
+
+end
+
+end)()
+
+-- Nightmare Ambush
+coroutine.wrap(function()
+    while true do
+        wait(130)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        wait(0)
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Anctarus7105/Entities-Spawns/refs/heads/main/NightMareAmbush"))()
+
+end
+
+end)()
+
+-- Wraith
+coroutine.wrap(function()
+    while true do
+        wait(50)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        wait(0)
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Anctarus7105/Entities-Spawns/refs/heads/main/Wra1th"))()
+
+end
+
+end)()
+
+--- Rebound
+coroutine.wrap(function()
+    while true do
+        wait(80)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        wait(0)
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Anctarus7105/Entities-Spawns/refs/heads/main/ReboundSpawnerOld.lua"))()
+
+end
+
+end)()
+
+--- Whisper
+coroutine.wrap(function()
+    while true do
+        wait(35)
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Anctarus7105/Entities-Spawns/refs/heads/main/Wh1sper"))()
+
+end
+
+end)()
+
+-- Barrage
+coroutine.wrap(function()
+    while true do
+        wait(150)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        wait(0)
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Anctarus7105/Entities-Spawns/refs/heads/main/Barrage.lua"))()
+
+end
+
+end)()
+
+-- Him
+coroutine.wrap(function()
+    while true do
+        wait(90)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        wait(0)
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Idk"))()
+
+end
+
+end)()
+   
+-- Sprint stamina
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/trungdepth-dot/Sprint-stamina-v2/refs/heads/main/Sprint"))()
+
+-- Flashlight
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/binhlforsaken156-sys/Flash-light/refs/heads/main/Flash-light-V1", true))()
