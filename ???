@@ -1,0 +1,17 @@
+local entityList = {
+{url =
+"https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Him%20Incoming%20Sound", delay = 40},
+{url =
+"https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Idk", delay = 115},
+}
+
+for _, entity in ipairs(entityList) do
+coroutine.wrap(function()
+while true do
+wait(entity.delay)
+pcall(function()
+loadstring(game:HttpGet(entity.url))()
+end)
+end
+end)()
+end
