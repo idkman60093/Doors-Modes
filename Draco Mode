@@ -110,7 +110,7 @@ end)()
 --- Whisper
 coroutine.wrap(function()
     while true do
-        wait(35)
+        wait(65)
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Anctarus7105/Entities-Spawns/refs/heads/main/Wh1sper"))()
 
 end
