@@ -50,7 +50,7 @@ Amount = 300,
 },
 Jumpscare = {
 Enabled = true,
-Face = "rbxassetid://10657365561",
+Face = "rbxassetid://101510935595753",
 FacePosition = UDim2.new(0.5, 0, 0.5, 0),
 FaceSize = UDim2.new(0, 150, 0, 150),
 BackgroundColor = Color3.new(180, 0, 255), -- Color3.fromRGB
