@@ -34,13 +34,13 @@ Enabled = false
 Movement = {
 Speed = 65,
 Delay = 3.5,
-Reversed = false
+Reversed = true
 },
 Rebounding = {
 Enabled = true,
 Type = "Ambush", -- "Blitz"
-Min = 2,
-Max = 2,
+Min = 3,
+Max = 3,
 Delay = 0
 },
 Damage = {
