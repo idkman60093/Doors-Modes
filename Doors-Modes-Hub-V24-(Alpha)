@@ -1240,10 +1240,12 @@ local Section = Tab:NewSection("6. Added Rebound Spawner (Remake) In Entity Spaw
 local Section = Tab:NewSection("7. Added Smiler Spawner (Remake) In Entity Spawner Section")
 local Section = Tab:NewSection("8. Added Cease Spawner (Remake) In Entity Spawner Section")
 local Section = Tab:NewSection("9. Added Silence Spawner In Entity Spawner Section")
-local Section = Tab:NewSection("10. Removed Fragmented Mode V3 (Remake)")
-local Section = Tab:NewSection("11. Changed Item Spawner name to Custom Item")
-local Section = Tab:NewSection("12. Added Guiding Flashlight In Custom Item Section")
-local Section = Tab:NewSection("13. Added Darkness Mode")
+local Section = Tab:NewSection("10. Added Hardcore Mode (Legacy) In Legacy Mode Section")
+local Section = Tab:NewSection("11. Removed Fragmented Mode V3 (Remake)")
+local Section = Tab:NewSection("12. Changed Item Spawner name to Custom Item")
+local Section = Tab:NewSection("13. Added Guiding Flashlight In Custom Item Section")
+local Section = Tab:NewSection("14. Added Legacy Mode Section")
+local Section = Tab:NewSection("15. Added Darkness Mode")
 
 local Tab = Window:NewTab("😄Credits😄")
 
