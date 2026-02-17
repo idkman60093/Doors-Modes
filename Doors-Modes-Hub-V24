@@ -765,6 +765,14 @@ Section:NewButton("Anctarus7105's Hub V3.5", "Credit to Anctarus7105", function(
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Anctarus7105/My-creations/refs/heads/main/Anctarus7105'sHubV3.5"))()
 end)
 
+local Tab = Windown:NewTab("😈Legacy Mode😈")
+
+local Section = Tab:NewSection("Only Works In Hotel-")
+
+Section:NewButton("Hardcore Mode (Legacy)", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Hardcore-Mode-Legacy-(Oldest-Version)"))()
+end)
+
 local Tab = Window:NewTab("⚠️Entity Spawner⚠️")
 
 local Section = Tab:NewSection("Custom Entity Spawner")
@@ -1235,16 +1243,12 @@ local Section = Tab:NewSection("9. Added Silence Spawner In Entity Spawner Secti
 local Section = Tab:NewSection("10. Removed Fragmented Mode V3 (Remake)")
 local Section = Tab:NewSection("11. Changed Item Spawner name to Custom Item")
 local Section = Tab:NewSection("12. Added Guiding Flashlight In Custom Item Section")
-local Section = Tab:NewSection("13. Added Darkness Mode")
+local Section = Tab:NewSection("13. Added Legacy Mode Section")
+local Section = Tab:NewSection("14. Added Hardcore Mode (Legacy) In Legacy Mode Section")
+local Section = Tab:NewSection("15. Added Darkness Mode")
 
 local Tab = Window:NewTab("😄Credits😄")
 
 local Section = Tab:NewSection("---Credits---")
 local Section = Tab:NewSection("Hub by Rip_Silence")
 local Section = Tab:NewSection("Credit to Everyone")
-
-
-
-
-
-
