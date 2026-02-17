@@ -39,4 +39,4 @@ end
 
 loadingFrame:Destroy()
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Doors-Modes-Hub-V24"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Doors-Modes-Hub-V24-(Alpha)"))()
