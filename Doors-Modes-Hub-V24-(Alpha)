@@ -1,3 +1,7 @@
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(0,255,120)'>Doors Modes Hub V24 Has Been Loaded!</font></b>")
+wait(2)
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(0,255,120)'>Made by Rip_Silence (#idkman06483)</font></b>")
+
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/DenDenZZZ/Kavo-UI-Library/main/Kavo.lua"))()
 
 local Window = Library.CreateLib("⭐Doors Modes Hub V24⭐ (Alpha)", "BloodTheme")
@@ -38,6 +42,10 @@ Section:NewButton("Void Mode", "Credit to Minh_Dcord", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/minh-scripter/doors_void/refs/heads/main/Doors_Void_Mode.txt"))()
 end)
 
+Section:NewButton("Null Mode", "Made by RealblueYT & LDLT_Legacy", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/rrealblueyt-oss/Null-mode/refs/heads/main/Null%20mode%20alpha%20by%20RealblueYT%20and%20LDLT_legacy"))()
+end)
+
 Section:NewButton("Fog Mode (Coming Soon)", "ButtonInfo", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/twinmaw/twin-maw-doors/refs/heads/main/twin-maw-doors.txt?token=GHSAT0AAAAAADTNMJDQ7LPWVB76QIHMW46O2LK6URQ"))()
 end)
@@ -52,6 +60,10 @@ end)
 
 Section:NewButton("Hallucination Mode (Easy Version)", " Credit to Guestly (Celestian)", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/GuestlyTheGreatestGuest/Modes/refs/heads/main/Hallucination-Mode-(Easy-Version)-Made-by-Celestian-on-Discord"))()
+end)
+
+Section:NewButton("Water Rises Mode", "Original Credit to Oof & Credit to VoorPr0 for reworking it", function()
+loadstring(game:HttpGet("https://pastefy.app/mrM9vA2L/raw"))()
 end)
 
 Section:NewButton("Insanitas Mode", "Made by Guestly (Celestian) & Vuivuiviu2", function()
@@ -184,6 +196,10 @@ Section:NewButton("Fear Mode (Remake)", "Remaked by RealblueYT", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/rrealblueyt-oss/Fearmode-/refs/heads/main/Fearmodereamake.txt"))()
 end)
 
+Section:NewButton("Meme Mode", "Made by Chu be te liet", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/chubeteliet-cpu/meme-mode-m-p/refs/heads/main/Meme-mode-ma-hoa", true))()
+end)
+
 Section:NewButton("Christmas Mode", "Credit to Chill Guy", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Idk-lol2/xmasmode/refs/heads/main/xmasmode.txt"))()
 end)
@@ -206,6 +222,10 @@ end)
 
 Section:NewButton("Ultimate Nightmare Mode V8.2", "Credit to Tuffmu Chicken Boy", function()
 loadstring(game:HttpGet("https://arch-http.vercel.app/files/ByTuffmuScriptVersion8.2UltimateNightmareMode.txt"))()
+end)
+
+Section:NewButton("Impossible Mode (Re-Degenerate)", "Made by Guestly (Celestian)", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Not-Guestly/Modes/refs/heads/main/Impossible-Mode-Re-Degenerate-Made-By-Guestly"))()
 end)
 
 Section:NewButton("Hard Mode V4 (Recaptured)", "Credit to RealblueYT", function()
@@ -1244,8 +1264,12 @@ local Section = Tab:NewSection("10. Added Hardcore Mode (Legacy) In Legacy Mode 
 local Section = Tab:NewSection("11. Removed Fragmented Mode V3 (Remake)")
 local Section = Tab:NewSection("12. Changed Item Spawner name to Custom Item")
 local Section = Tab:NewSection("13. Added Guiding Flashlight In Custom Item Section")
-local Section = Tab:NewSection("14. Added Legacy Mode Section")
-local Section = Tab:NewSection("15. Added Darkness Mode")
+local Section = Tab:NewSection("14. Added Impossible Mode (Re-Degenerate)")
+local Section = Tab:NewSection("15. Added Water Rises Mode")
+local Section = Tab:NewSection("16. Added Legacy Mode Section")
+local Section = Tab:NewSection("17. Added Darkness Mode")
+local Section = Tab:NewSection("18. Added Null Mode")
+local Section = Tab:NewSection("19. Added Meme Mode")
 
 local Tab = Window:NewTab("😄Credits😄")
 
