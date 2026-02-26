@@ -5,6 +5,10 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Zeca130/Doors-mode/re
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Junbbinopro/Item/refs/heads/main/lantern"))()
 
+-- Door Sound Change
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/check78/Endless-Doors-In-Doors/main/custom%20doors%20sounds.txt"))()
+
 require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Stryker Mode Has Been Executed",true)
  wait(2)
 require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Credits: Rip_Silence (The Creator Of This Mode)",true)
