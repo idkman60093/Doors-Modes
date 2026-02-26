@@ -70,7 +70,7 @@ end)()
 --- Fear
 coroutine.wrap(function()
     while true do
-        wait(160)
+        wait(380)
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         wait(0)
         loadstring(game:HttpGet("https://raw.githubusercontent.com/eoyoustme/nightmare/refs/heads/main/Fear"))()
@@ -82,7 +82,7 @@ end)()
 -- Barrage
 coroutine.wrap(function()
     while true do
-        wait(150)
+        wait(300)
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         wait(0)
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Anctarus7105/Entities-Spawns/refs/heads/main/Barrage.lua"))()
