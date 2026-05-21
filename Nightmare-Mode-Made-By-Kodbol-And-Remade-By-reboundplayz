@@ -1,0 +1,119 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Not-Guestly/Scripts/refs/heads/main/UNIVERSAL-Sprint-Bar.lua"))()
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Nightmare Mode Successfully Executed", true)
+local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.com/Voor-Pr00/Achivements/refs/heads/main/Voorpr0"))()
+
+---====== Display achievement ======---
+achievementGiver({
+    Title = "The Nightmare Has Come...",
+    Desc = "Run for your life",
+    Reason = "Execute Nightmare Mode Script",
+    Image = "rbxassetid://10888024887"
+})
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(255, 0, 0)'>Nightmare Mode Has Been Executed</font></b>")
+wait(1.5)
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(255, 0, 0)'>Discord Server = https://discord.gg/csju8PBxM</font></b>")
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Audio/refs/heads/main/Nightmare-Mode-Entrance"))()
+local caption = game.Players.LocalPlayer:WaitForChild("PlayerGui").MainUI.MainFrame.Caption
+caption.TextColor3 = Color3.fromRGB(255, 255, 255)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Nightmare Mode Initiated", true)
+wait(2.5)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Made by Kodbol (Scripter) and Asif (Helper)", true)
+wait(2.5)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Fixed/Remade by reboundplayz", true)
+wait(2.5)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Sprint Bar by Guestly", true)
+wait(2.5)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Five Nights At Freddys, how it can be?", true)
+
+-- Hungry
+coroutine.wrap(function()
+while true do
+wait(math.random(15, 30))
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Hungry-Nightmare-Mode"))()
+end
+end)()
+
+-- Nightmare Screech
+coroutine.wrap(function()
+while true do
+wait(math.random(25, 45))
+loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Screech%20Spawner"))()
+end
+end)()
+
+-- Attraction
+---====== Load achievement giver ======---
+local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
+
+local hasAttractionBadge = false
+
+coroutine.wrap(function()
+    while true do
+        task.wait(75)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Attraction%20Spawner"))()
+
+        if not hasAttractionBadge then
+    game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+            hasAttractionBadge = true 
+            ---====== Display achievement ======---
+            achievementGiver({
+                Title = "Fatal Attraction",
+                Desc = "It saw you first.",
+                Reason = "Encounter Attraction",
+                Image = "rbxassetid://82356434155624"
+            })
+        end
+    end
+end)()
+
+-- A-60
+coroutine.wrap(function()
+while true do
+wait(110)
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+wait(0)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/A-60-Nightmare-Mode"))()
+end
+end)()
+
+-- Fire Guardian
+coroutine.wrap(function()
+while true do
+wait(150)
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+wait(0)
+loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Fire%20Guardian%20Spawner"))()
+end
+end)()
+
+-- Silent
+coroutine.wrap(function()
+while true do
+wait(200)
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+wait(0)
+loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Silent%20Spawner"))()
+end
+end)()
+
+-- Fear
+coroutine.wrap(function()
+while true do
+wait(280)
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+wait(0)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Fear-Nightmare-Mode"))()
+end
+end)()
+
+-- B-60
+coroutine.wrap(function()
+while true do
+wait(540)
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+wait(3)
+loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/B-60%20Spawner"))()
+end
+end)()
