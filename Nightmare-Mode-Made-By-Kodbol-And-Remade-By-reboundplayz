@@ -112,8 +112,6 @@ end)()
 coroutine.wrap(function()
 while true do
 wait(math.random(350, 540))
-game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
-wait(3)
 loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/B-60%20Spawner"))()
 end
 end)()
