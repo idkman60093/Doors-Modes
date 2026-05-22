@@ -91,7 +91,7 @@ end)()
 -- Nightmare Rush
 coroutine.wrap(function()
 while true do
-wait(math.random(50, 125))
+wait(135)
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
 wait(0)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Nightmare-Rush-Spawner"))()
@@ -102,7 +102,7 @@ end)()
 -- Silent
 coroutine.wrap(function()
 while true do
-wait(math.random(150, 220))
+wait(math.random(155, 220))
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
 wait(0)
 loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Silent%20Spawner"))()
