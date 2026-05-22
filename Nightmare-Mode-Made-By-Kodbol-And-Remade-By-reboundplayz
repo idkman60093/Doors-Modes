@@ -71,7 +71,7 @@ end)()
 -- A-60
 coroutine.wrap(function()
 while true do
-wait(math.random(110, 180))
+wait(180)
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
 wait(0)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/A-60-Nightmare-Mode"))()
@@ -81,7 +81,7 @@ end)()
 -- Fire Guardian
 coroutine.wrap(function()
 while true do
-wait(math.random(100, 170))
+wait(100)
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
 wait(0)
 loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Fire%20Guardian%20Spawner"))()
@@ -102,7 +102,7 @@ end)()
 -- Silent
 coroutine.wrap(function()
 while true do
-wait(math.random(150, 200))
+wait(math.random(150, 220))
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
 wait(0)
 loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Silent%20Spawner"))()
@@ -122,7 +122,7 @@ end)()
 -- B-60
 coroutine.wrap(function()
 while true do
-wait(math.random(250, 540))
+wait(math.random(300, 540))
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
 wait(3)
 loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/B-60%20Spawner"))()
