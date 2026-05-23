@@ -26,6 +26,50 @@ require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("
 wait(2.5)
 require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Five Nights At Freddys, how it can be?", true)
 
+game.Players.LocalPlayer.PlayerGui.MainUI.Jumpscare.Jumpscare_Rush.ImageLabel.ImageColor3 = Color3.fromRGB(255,0,0)
+game.Players.LocalPlayer.PlayerGui.MainUI.Jumpscare.Jumpscare_Rush.ImageLabelBig.ImageColor3 = Color3.fromRGB(255,0,0)
+
+local workspace = game:GetService("Workspace")
+
+local running = true
+
+local function OnRushSpawned(model)
+    print("Rush detected:", model.Name)
+
+    task.wait(0.5)
+
+game.Workspace.RushMoving.RushNew.Attachment.ParticleEmitter.Color = ColorSequence.new(Color3.fromRGB(255,0,0))
+
+game.Workspace.RushMoving.RushNew.PlaySound.PlaybackSpeed = 0.1
+game.Workspace.RushMoving.RushNew.Footsteps.PlaybackSpeed = 0.1
+
+workspace.RushMoving.RushNew.Attachment.BlackTrail.Color = ColorSequence.new(Color3.fromRGB(41,1,1))
+end
+
+while true do
+    if running then
+        local rush = workspace:FindFirstChild("RushMoving")
+
+        if rush and rush:IsA("Model") then
+            running = false
+
+            task.spawn(function()
+                OnRushSpawned(rush)
+            end)
+
+            repeat
+                task.wait(0.1)
+                rush = workspace:FindFirstChild("RushMoving")
+            until not rush
+
+            running = true
+            print("Rush gone, loop resumed")
+        end
+    end
+
+    task.wait(0.1)
+end
+
 -- Hungry
 coroutine.wrap(function()
 while true do
@@ -115,3 +159,102 @@ wait(math.random(350, 540))
 loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/B-60%20Spawner"))()
 end
 end)()
+
+local Players = game:GetService("Players")
+local TextChatService = game:GetService("TextChatService")
+
+local LocalPlayer = Players.LocalPlayer
+
+local AllowedPlayers = {
+ ["KardinGamingChair"] = true,
+ ["TestingDoorsScrip"] = true
+}
+
+TextChatService.OnIncomingMessage = function(message)
+ local properties = Instance.new("TextChatMessageProperties")
+
+ if message.TextSource then
+  local player = Players:GetPlayerByUserId(message.TextSource.UserId)
+
+  if player then
+
+   if player.Name == "KardinGamingChair" then
+    properties.PrefixText =
+     "<font color='#FFD700'>[Owner]</font> " ..
+     message.PrefixText
+
+   elseif player.Name == "TestingDoorsScrip" then
+    properties.PrefixText =
+     "<font color='#00AAFF'>[Admin]</font>" ..
+     "<font color='#FFFFFF'> and </font>" ..
+     "<font color='#00FF00'>[Helper]</font> " ..
+     message.PrefixText
+   end
+  end
+ end
+
+ return properties
+end
+
+local Commands = {
+ ["/hungry"] = true,
+ ["/nightmare_screech"] = true,
+ ["/attraction"] = true,
+ ["/A-60"] = true,
+ ["/fire_guardian"] = true,
+ ["/silent"] = true,
+ ["/B-60"] = true,
+ ["/fear"] = true
+}
+
+local function ExecuteCommand(cmd, sender)
+ print("Executing:", cmd, "from", sender)
+
+ if cmd == "/hungry" then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Hungry-Nightmare-Mode"))()
+
+ elseif cmd == "/nightmare_screech" then
+loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Screech%20Spawner"))()
+
+ elseif cmd == "/attraction" then
+loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Attraction%20Spawner"))()
+
+ elseif cmd == "/A-60" then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/A-60-Nightmare-Mode"))()
+
+ elseif cmd == "/fire_guardian" then
+loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Fire%20Guardian%20Spawner"))()
+
+ elseif cmd == "/silent" then
+loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Silent%20Spawner"))()
+
+ elseif cmd == "/B-60" then
+loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/B-60%20Spawner"))()
+
+ elseif cmd == "/fear" then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Fear-Nightmare-Mode"))()
+ end
+end
+
+TextChatService.MessageReceived:Connect(function(message)
+ local text = message.Text
+ local textSource = message.TextSource
+
+ if not textSource then
+  return
+ end
+
+ local player = Players:GetPlayerByUserId(textSource.UserId)
+
+ if not player then
+  return
+ end
+
+ if not AllowedPlayers[player.Name] then
+  return
+ end
+
+ if Commands[text] then
+  ExecuteCommand(text, player.Name)
+ end
+end)
