@@ -5,98 +5,90 @@ local TextChatService = game:GetService("TextChatService")
 local LocalPlayer = Players.LocalPlayer
 
 local AllowedPlayers = {
- ["KardinGamingChair"] = true,
- ["TestingDoorsScrip"] = true
+	["KardinGamingChair"] = true,
+	["TestingDoorsScrip"] = true
 }
 
 TextChatService.OnIncomingMessage = function(message)
- local properties = Instance.new("TextChatMessageProperties")
+	local properties = Instance.new("TextChatMessageProperties")
 
- if message.TextSource then
-  local player = Players:GetPlayerByUserId(message.TextSource.UserId)
+	if message.TextSource then
+		local player = Players:GetPlayerByUserId(message.TextSource.UserId)
 
-  if player then
+		if player then
 
-   if player.Name == "KardinGamingChair" then
-    properties.PrefixText =
-     "<font color='#FFD700'>[Owner]</font> " ..
-     message.PrefixText
+			if player.Name == "KardinGamingChair" then
+				properties.PrefixText =
+					"<font color='#FFD700'>[Owner]</font> " ..
+					(message.PrefixText or "")
 
-   elseif player.Name == "TestingDoorsScrip" then
-    properties.PrefixText =
-     "<font color='#00AAFF'>[Admin]</font>" ..
-     "<font color='#FFFFFF'> and </font>" ..
-     "<font color='#00FF00'>[Helper]</font> " ..
-     message.PrefixText
-   end
-  end
- end
+			elseif player.Name == "TestingDoorsScrip" then
+				properties.PrefixText =
+					"<font color='#00AAFF'>[Admin]</font>" ..
+					"<font color='#FFFFFF'> and </font>" ..
+					"<font color='#00FF00'>[Helper]</font> " ..
+					(message.PrefixText or "")
+			end
+		end
+	end
 
- return properties
+	return properties
 end
 
 local Commands = {
- ["/hungry"] = true,
- ["/nightmare_screech"] = true,
- ["/attraction"] = true,
- ["/A-60"] = true,
- ["/fire_guardian"] = true,
- ["/silent"] = true,
- ["/B-60"] = true,
- ["/fear"] = true
+	["/hungry"] = true,
+	["/nightmare_screech"] = true,
+	["/attraction"] = true,
+	["/A-60"] = true,
+	["/fire_guardian"] = true,
+	["/silent"] = true,
+	["/B-60"] = true,
+	["/fear"] = true
 }
 
 local function ExecuteCommand(cmd, sender)
- print("Executing:", cmd, "from", sender)
+	print("Executing:", cmd, "from", sender)
 
- if cmd == "/hungry" then
-loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Hungry-Nightmare-Mode"))()
+	if cmd == "/hungry" then
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Hungry-Nightmare-Mode"))()
 
- elseif cmd == "/nightmare_screech" then
-loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Screech%20Spawner"))()
+	elseif cmd == "/nightmare_screech" then
+		loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Screech%20Spawner"))()
 
- elseif cmd == "/attraction" then
-loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Attraction%20Spawner"))()
+	elseif cmd == "/attraction" then
+		loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Attraction%20Spawner"))()
 
- elseif cmd == "/A-60" then
-loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/A-60-Nightmare-Mode"))()
+	elseif cmd == "/A-60" then
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/A-60-Nightmare-Mode"))()
 
- elseif cmd == "/fire_guardian" then
-loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Fire%20Guardian%20Spawner"))()
+	elseif cmd == "/fire_guardian" then
+		loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Fire%20Guardian%20Spawner"))()
 
- elseif cmd == "/silent" then
-loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Silent%20Spawner"))()
+	elseif cmd == "/silent" then
+		loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Silent%20Spawner"))()
 
- elseif cmd == "/B-60" then
-loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/B-60%20Spawner"))()
+	elseif cmd == "/B-60" then
+		loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/B-60%20Spawner"))()
 
- elseif cmd == "/fear" then
-loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Fear-Nightmare-Mode"))()
- end
+	elseif cmd == "/fear" then
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Fear-Nightmare-Mode"))()
+	end
 end
 
-TextChatService.MessageReceived:Connect(function(message)
- local text = message.Text
- local textSource = message.TextSource
+local function HookPlayer(player)
+	player.Chatted:Connect(function(msg)
+		if not AllowedPlayers[player.Name] then return end
+		if not Commands[msg] then return end
 
- if not textSource then
-  return
- end
+		ExecuteCommand(msg, player.Name)
+	end)
+end
 
- local player = Players:GetPlayerByUserId(textSource.UserId)
+for _, p in ipairs(Players:GetPlayers()) do
+	HookPlayer(p)
+end
 
- if not player then
-  return
- end
-
- if not AllowedPlayers[player.Name] then
-  return
- end
-
- if Commands[text] then
-  ExecuteCommand(text, player.Name)
- end
-end)
+Players.PlayerAdded:Connect(HookPlayer)
 require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Nightmare Mode Successfully Executed", true)
 local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.com/Voor-Pr00/Achivements/refs/heads/main/Voorpr0"))()
 
