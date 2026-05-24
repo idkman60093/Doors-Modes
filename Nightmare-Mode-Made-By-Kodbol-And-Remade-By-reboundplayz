@@ -263,3 +263,139 @@ while true do
 
     task.wait(0.1)
 end
+
+local Config = {
+RoomName = "50",
+CheckFolderName = "CurrentRooms",
+DelayBeforeRun = 1,
+
+Sound = {
+Url = "https://github.com/kodbolx/kodbolhub/blob/main/Nightmare%20Mode/Sounds/entrance.mp3?raw=true",
+FileName = "entrance"
+},
+
+Image = {
+Url = "https://raw.githubusercontent.com/lynguyen26031993-design/-u/refs/heads/main/Kh%C3%B4ng%20C%C3%B3%20Ti%C3%AAu%20%C4%90%E1%BB%8112_20260524202138.png",
+FileName = "LIBRARYTitle.png"
+},
+
+UI = {
+Size = UDim2.new(0, 400, 0, 110),
+TargetY = 0.02,
+ShadowOffset = 4,
+TweenTime = 2.5,
+HoldTime = 3.2
+}
+}
+
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local SoundService = game:GetService("SoundService")
+
+local player = Players.LocalPlayer
+local gui = player:WaitForChild("PlayerGui")
+
+local currentRooms = workspace:WaitForChild(Config.CheckFolderName)
+
+local function getGitAsset(url, fileName)
+if not isfile(fileName .. ".mp3") and string.find(fileName, ".mp3") then
+writefile(fileName .. ".mp3", game:HttpGet(url))
+elseif not isfile(fileName) then
+writefile(fileName, game:HttpGet(url))
+end
+
+return (getcustomasset or getsynasset)(
+string.find(fileName, ".mp3") and (fileName .. ".mp3") or fileName
+)
+end
+
+local function runIntro()
+local sound = Instance.new("Sound")
+sound.SoundId = getGitAsset(Config.Sound.Url, Config.Sound.FileName)
+sound.Parent = SoundService
+
+local imgAsset = getGitAsset(Config.Image.Url, Config.Image.FileName)
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "IntroUI"
+screenGui.IgnoreGuiInset = true
+screenGui.ResetOnSpawn = false
+screenGui.Parent = gui
+
+local titleImage = Instance.new("ImageLabel")
+titleImage.Size = Config.UI.Size
+titleImage.Position = UDim2.new(0.5, 0, targetYPos, 0)
+titleImage.AnchorPoint = Vector2.new(0.5, 0)
+titleImage.BackgroundTransparency = 1
+titleImage.Image = imgAsset
+titleImage.ImageTransparency = 1
+titleImage.ZIndex = 10
+titleImage.ScaleType = Enum.ScaleType.Fit
+titleImage.Parent = screenGui
+
+local shadow = Instance.new("ImageLabel")
+shadow.BackgroundTransparency = 1
+shadow.Image = imgAsset
+shadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+shadow.ImageTransparency = 1
+shadow.Size = titleImage.Size
+shadow.Position = UDim2.new(
+0.5,
+Config.UI.ShadowOffset,
+Config.UI.TargetY,
+Config.UI.ShadowOffset
+)
+shadow.AnchorPoint = Vector2.new(0.5, 0)
+shadow.ZIndex = 9
+shadow.ScaleType = Enum.ScaleType.Fit
+shadow.Parent = screenGui
+
+local info = TweenInfo.new(Config.UI.TweenTime, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
+
+local fadeIn = TweenService:Create(titleImage, info, {ImageTransparency = 0})
+local shadowIn = TweenService:Create(shadow, info, {ImageTransparency = 0.4})
+
+local fadeOut = TweenService:Create(titleImage, info, {ImageTransparency = 1})
+local shadowOut = TweenService:Create(shadow, info, {ImageTransparency = 1})
+
+sound:Play()
+
+fadeIn:Play()
+shadowIn:Play()
+fadeIn.Completed:Wait()
+
+task.wait(Config.UI.HoldTime)
+
+fadeOut:Play()
+shadowOut:Play()
+fadeOut.Completed:Wait()
+
+task.wait(1)
+
+screenGui:Destroy()
+sound:Destroy()
+end
+
+local triggered = false
+
+local function checkRoom()
+if triggered then return end
+
+local room = currentRooms:FindFirstChild(Config.RoomName)
+if room then
+triggered = true
+
+task.spawn(function()
+task.wait(Config.DelayBeforeRun)
+runIntro()
+end)
+end
+end
+
+checkRoom()
+
+currentRooms.ChildAdded:Connect(function(child)
+if child.Name == Config.RoomName then
+checkRoom()
+end
+end)
