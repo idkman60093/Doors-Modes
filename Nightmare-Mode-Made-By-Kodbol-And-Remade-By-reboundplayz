@@ -2,7 +2,17 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Not-Guestly/Scripts/r
 local Players = game:GetService("Players")
 local TextChatService = game:GetService("TextChatService")
 
-local LocalPlayer = Players.LocalPlayer
+local PREFIX = "!"
+local COMMANDS = {
+	hungry = true,
+	nightmare_screech = true,
+	attraction = true,
+	["A-60"] = true,
+	fire_guardian = true,
+	silent = true,
+	["B-60"] = true,
+	fear = true
+}
 
 local AllowedPlayers = {
 	["KardinGamingChair"] = true,
@@ -35,57 +45,61 @@ TextChatService.OnIncomingMessage = function(message)
 	return properties
 end
 
-local Commands = {
-	["/hungry"] = true,
-	["/nightmare_screech"] = true,
-	["/attraction"] = true,
-	["/A-60"] = true,
-	["/fire_guardian"] = true,
-	["/silent"] = true,
-	["/B-60"] = true,
-	["/fear"] = true
-}
-
 local function ExecuteCommand(cmd, sender)
-	print("Executing:", cmd, "from", sender)
+	print("SYNC EXECUTED:", cmd, "FROM:", sender)
 
-	if cmd == "/hungry" then
+	if cmd == "hungry" then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Hungry-Nightmare-Mode"))()
 
-	elseif cmd == "/nightmare_screech" then
+	elseif cmd == "nightmare_screech" then
 		loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Screech%20Spawner"))()
 
-	elseif cmd == "/attraction" then
+	elseif cmd == "attraction" then
 		loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Attraction%20Spawner"))()
 
-	elseif cmd == "/A-60" then
+	elseif cmd == "A-60" then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/A-60-Nightmare-Mode"))()
 
-	elseif cmd == "/fire_guardian" then
+	elseif cmd == "fire_guardian" then
 		loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Fire%20Guardian%20Spawner"))()
 
-	elseif cmd == "/silent" then
+	elseif cmd == "silent" then
 		loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Silent%20Spawner"))()
 
-	elseif cmd == "/B-60" then
+	elseif cmd == "B-60" then
 		loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/B-60%20Spawner"))()
 
-	elseif cmd == "/fear" then
+	elseif cmd == "fear" then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Fear-Nightmare-Mode"))()
 	end
 end
 
 local function HookPlayer(player)
-	player.Chatted:Connect(function(msg)
-		if not AllowedPlayers[player.Name] then return end
-		if not Commands[msg] then return end
 
-		ExecuteCommand(msg, player.Name)
+	player.Chatted:Connect(function(msg)
+
+		if not AllowedPlayers[player.Name] then
+			return
+		end
+
+		msg = tostring(msg)
+
+		if string.sub(msg,1,#PREFIX) ~= PREFIX then
+			return
+		end
+
+		local cmd = string.sub(msg,#PREFIX + 1)
+
+		if not COMMANDS[cmd] then
+			return
+		end
+
+		ExecuteCommand(cmd,player.Name)
 	end)
 end
 
-for _, p in ipairs(Players:GetPlayers()) do
-	HookPlayer(p)
+for _, player in ipairs(Players:GetPlayers()) do
+	HookPlayer(player)
 end
 
 Players.PlayerAdded:Connect(HookPlayer)
