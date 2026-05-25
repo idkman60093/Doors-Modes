@@ -74,7 +74,7 @@ local function ExecuteCommand(cmd, sender)
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Silent-Nightmare-Mode"))()
 
 	elseif cmd == "B-60" then
-		loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/B-60%20Spawner"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/B-60-Nightmare-Mode"))()
 
 	elseif cmd == "fear" then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Fear-Nightmare-Mode"))()
@@ -226,7 +226,7 @@ end)()
 coroutine.wrap(function()
 while true do
 wait(math.random(350, 540))
-loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/B-60%20Spawner"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/B-60-Nightmare-Mode"))()
 end
 end)()
 
