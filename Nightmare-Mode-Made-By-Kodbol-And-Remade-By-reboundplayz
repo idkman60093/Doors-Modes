@@ -409,3 +409,326 @@ if child.Name == Config.RoomName then
 checkRoom()
 end
 end)
+
+local Config = {
+    RoomName = "53",
+    CheckFolderName = "CurrentRooms",
+    DelayBeforeRun = 0,
+
+    Sound = {
+        Url = "https://github.com/thelostw3r/ScriptsForMyModes/blob/main/HorrorBeginChime.mp3?raw=true",
+        FileName = "HorrorBeginChime"
+    },
+
+    Image = {
+        Url = "https://raw.githubusercontent.com/lynguyen26031993-design/-u/refs/heads/main/Khong_Co_Tieu_e11_20260524205545.png",
+        FileName = "DARKNESSTitle.png"
+    },
+
+    UI = {
+        Size = UDim2.new(0, 400, 0, 110),
+        TargetY = 0.02,
+        ShadowOffset = 4,
+        TweenTime = 2.5,
+        HoldTime = 3.2
+    }
+}
+
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local SoundService = game:GetService("SoundService")
+
+local player = Players.LocalPlayer
+local gui = player:WaitForChild("PlayerGui")
+
+local currentRooms = workspace:WaitForChild(Config.CheckFolderName)
+
+local function clearLights(obj)
+	for _, v in ipairs(obj:GetDescendants()) do
+		
+		if v:IsA("PointLight")
+		or v:IsA("SurfaceLight")
+		or v:IsA("SpotLight")
+		or v:IsA("Light") then
+			v:Destroy()
+		end
+
+		if v:IsA("BasePart") and v.Material == Enum.Material.Neon then
+			v.Material = Enum.Material.Plastic
+		end
+	end
+end
+
+local function scanAll()
+	for _, obj in ipairs(currentRooms:GetChildren()) do
+		clearLights(obj)
+	end
+end
+
+scanAll()
+
+currentRooms.ChildAdded:Connect(function(obj)
+	task.wait(0.1)
+	clearLights(obj)
+end)
+
+currentRooms.DescendantAdded:Connect(function(obj)
+
+	if obj:IsA("PointLight")
+	or obj:IsA("SurfaceLight")
+	or obj:IsA("SpotLight")
+	or obj:IsA("Light") then
+		obj:Destroy()
+	end
+
+	if obj:IsA("BasePart") and obj.Material == Enum.Material.Neon then
+		obj.Material = Enum.Material.Plastic
+	end
+end)
+
+local function getGitAsset(url, fileName)
+	if not isfile(fileName .. ".mp3") and string.find(fileName, ".mp3") then
+		writefile(fileName .. ".mp3", game:HttpGet(url))
+	elseif not isfile(fileName) then
+		writefile(fileName, game:HttpGet(url))
+	end
+
+	return (getcustomasset or getsynasset)(
+		string.find(fileName, ".mp3") and (fileName .. ".mp3") or fileName
+	)
+end
+
+local function runIntro()
+	local sound = Instance.new("Sound")
+	sound.SoundId = getGitAsset(Config.Sound.Url, Config.Sound.FileName)
+	sound.Parent = SoundService
+
+	local imgAsset = getGitAsset(Config.Image.Url, Config.Image.FileName)
+
+	local screenGui = Instance.new("ScreenGui")
+	screenGui.Name = "IntroUI"
+	screenGui.IgnoreGuiInset = true
+	screenGui.ResetOnSpawn = false
+	screenGui.Parent = gui
+
+	local titleImage = Instance.new("ImageLabel")
+	titleImage.Size = Config.UI.Size
+	titleImage.Position = UDim2.new(0.5, 0, Config.UI.TargetY, 0)
+	titleImage.AnchorPoint = Vector2.new(0.5, 0)
+	titleImage.BackgroundTransparency = 1
+	titleImage.Image = imgAsset
+	titleImage.ImageTransparency = 1
+	titleImage.ZIndex = 10
+	titleImage.ScaleType = Enum.ScaleType.Fit
+	titleImage.Parent = screenGui
+
+	local shadow = Instance.new("ImageLabel")
+	shadow.BackgroundTransparency = 1
+	shadow.Image = imgAsset
+	shadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+	shadow.ImageTransparency = 1
+	shadow.Size = titleImage.Size
+	shadow.Position = UDim2.new(
+		0.5,
+		Config.UI.ShadowOffset,
+		Config.UI.TargetY,
+		Config.UI.ShadowOffset
+	)
+	shadow.AnchorPoint = Vector2.new(0.5, 0)
+	shadow.ZIndex = 9
+	shadow.ScaleType = Enum.ScaleType.Fit
+	shadow.Parent = screenGui
+
+	local info = TweenInfo.new(Config.UI.TweenTime, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
+
+	local fadeIn = TweenService:Create(titleImage, info, {ImageTransparency = 0})
+	local shadowIn = TweenService:Create(shadow, info, {ImageTransparency = 0.4})
+
+	local fadeOut = TweenService:Create(titleImage, info, {ImageTransparency = 1})
+	local shadowOut = TweenService:Create(shadow, info, {ImageTransparency = 1})
+
+	sound:Play()
+
+	fadeIn:Play()
+	shadowIn:Play()
+	fadeIn.Completed:Wait()
+
+	task.wait(Config.UI.HoldTime)
+
+	fadeOut:Play()
+	shadowOut:Play()
+	fadeOut.Completed:Wait()
+
+	task.wait(12)
+
+	screenGui:Destroy()
+	sound:Destroy()
+end
+
+local triggered = false
+
+local function checkRoom()
+	if triggered then return end
+
+	local room = currentRooms:FindFirstChild(Config.RoomName)
+	if room then
+		triggered = true
+
+		task.spawn(function()
+			task.wait(Config.DelayBeforeRun)
+			runIntro()
+		end)
+	end
+end
+
+checkRoom()
+
+currentRooms.ChildAdded:Connect(function(child)
+	if child.Name == Config.RoomName then
+		checkRoom()
+	end
+end)
+
+local Config = {
+	Damage = 90,
+	Cooldown = 50,
+	TargetRoom = "54"
+}
+
+local Players = game:GetService("Players")
+
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+local currentRooms = workspace:WaitForChild("CurrentRooms")
+
+local running = false
+local detected = false
+
+local function getCharacter()
+	return player.Character or player.CharacterAdded:Wait()
+end
+
+local function getHumanoid()
+	local char = getCharacter()
+	return char:FindFirstChildOfClass("Humanoid")
+end
+
+local function getMainGame()
+	return playerGui:WaitForChild("MainUI")
+		:WaitForChild("Initiator")
+		:WaitForChild("Main_Game")
+end
+
+local function getRoom()
+	local currentRoom = player:GetAttribute("CurrentRoom")
+	if not currentRoom then return nil end
+	return currentRooms:FindFirstChild(currentRoom)
+end
+
+local function isMoving()
+	local hum = getHumanoid()
+	if not hum then return false end
+	return hum.MoveDirection.Magnitude > 0.05
+end
+
+local function dealDamage()
+	local hum = getHumanoid()
+
+	if hum and hum.Health > 0 then
+		hum.Health = hum.Health - Config.Damage
+	end
+end
+
+local function runA90()
+	if running then
+		return
+	end
+
+	running = true
+
+	local mainGame = getMainGame()
+	local room = getRoom()
+
+	if not room then
+		running = false
+		return
+	end
+
+	local module = mainGame:WaitForChild("RemoteListener")
+		:WaitForChild("Modules")
+		:WaitForChild("A90")
+
+	local ok, a90 = pcall(function()
+		return require(module)
+	end)
+
+	if ok and typeof(a90) == "function" then
+		a90(require(mainGame), room)
+	end
+
+	local triggered = false
+
+	local startTime = os.clock()
+
+	while os.clock() - startTime < 3 do
+		task.wait()
+
+		local gui = playerGui:FindFirstChild("MainUI")
+		local jumpscare = gui and gui:FindFirstChild("Jumpscare")
+		local a90Gui = jumpscare and jumpscare:FindFirstChild("Jumpscare_A90")
+
+		local active = false
+
+		if a90Gui then
+			local face = a90Gui:FindFirstChild("FaceAngry")
+
+			if face and face.Visible then
+				active = true
+			end
+		end
+
+		if active and isMoving() then
+			triggered = true
+			dealDamage()
+			break
+		end
+	end
+
+	task.wait(Config.Cooldown)
+
+	running = false
+end
+
+local function startLoop()
+	task.spawn(function()
+		while detected do
+			runA90()
+
+			repeat
+				task.wait()
+			until not running
+		end
+	end)
+end
+
+local existing = currentRooms:FindFirstChild(Config.TargetRoom)
+
+if existing then
+	detected = true
+	startLoop()
+else
+	local connection
+
+	connection = currentRooms.ChildAdded:Connect(function(child)
+		if child.Name == Config.TargetRoom then
+			detected = true
+
+			if connection then
+				connection:Disconnect()
+			end
+
+			startLoop()
+		end
+	end)
+end
