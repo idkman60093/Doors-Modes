@@ -71,7 +71,7 @@ local function ExecuteCommand(cmd, sender)
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Fire-Guardian-Nightmare-Mode"))()
 
 	elseif cmd == "silent" then
-		loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Silent%20Spawner"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Silent-Nightmare-Mode"))()
 
 	elseif cmd == "B-60" then
 		loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/B-60%20Spawner"))()
@@ -208,7 +208,7 @@ while true do
 wait(math.random(180, 220))
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
 wait(0)
-loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Silent%20Spawner"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Silent-Nightmare-Mode"))()
 end
 end)()
 
