@@ -11,12 +11,14 @@ local COMMANDS = {
 	fire_guardian = true,
 	silent = true,
 	["B-60"] = true,
-	fear = true
+	fear = true,
+    ["A-90"] = true
 }
 
 local AllowedPlayers = {
 	["KardinGamingChair"] = true,
-	["TestingDoorsScrip"] = true
+	["TestingDoorsScrip"] = true,
+    ["anbdnhucc"] = true
 }
 
 TextChatService.OnIncomingMessage = function(message)
@@ -36,6 +38,11 @@ TextChatService.OnIncomingMessage = function(message)
 				properties.PrefixText =
 					"<font color='#00AAFF'>[Admin]</font>" ..
 					"<font color='#FFFFFF'> and </font>" ..
+					"<font color='#00FF00'>[Helper]</font> " ..
+					(message.PrefixText or "")
+
+            elseif player.Name == "anbdnhucc" then
+				properties.PrefixText =
 					"<font color='#00FF00'>[Helper]</font> " ..
 					(message.PrefixText or "")
 			end
@@ -71,6 +78,9 @@ local function ExecuteCommand(cmd, sender)
 
 	elseif cmd == "fear" then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Fear-Nightmare-Mode"))()
+
+    elseif cmd == "A-90" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/A-90-Nightmare-Mode"))()
 	end
 end
 
