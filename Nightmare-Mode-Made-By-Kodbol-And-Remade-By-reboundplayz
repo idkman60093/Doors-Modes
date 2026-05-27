@@ -140,6 +140,57 @@ require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("
 wait(2.5)
 require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Five Nights At Freddys, how it can be?", true)
 
+game.Players.LocalPlayer.PlayerGui.MainUI.Jumpscare.Jumpscare_Rush.ImageLabel.ImageColor3 = Color3.fromRGB(255,0,0)
+game.Players.LocalPlayer.PlayerGui.MainUI.Jumpscare.Jumpscare_Rush.ImageLabelBig.ImageColor3 = Color3.fromRGB(255,0,0)
+
+local workspace = game:GetService("Workspace")
+
+local running = true
+
+local function OnRushSpawned(model)
+    print("Rush detected:", model.Name)
+
+    task.wait(0.5)
+    
+    local rushNew = workspace:WaitForChild("RushMoving"):WaitForChild("RushNew")
+
+game.Workspace.RushMoving.RushNew.Attachment.ParticleEmitter.Color = ColorSequence.new(Color3.fromRGB(255,0,0))
+
+game.Workspace.RushMoving.RushNew.PlaySound.PlaybackSpeed = 0.1
+game.Workspace.RushMoving.RushNew.Footsteps.PlaybackSpeed = 0.1
+
+workspace.RushMoving.RushNew.Attachment.BlackTrail.Color = ColorSequence.new(Color3.fromRGB(41,1,1))
+end
+
+task.spawn(function()
+
+	while task.wait(0.1) do
+
+		if running then
+
+			local rush = workspace:FindFirstChild("RushMoving")
+
+			if rush and rush:IsA("Model") then
+
+				running = false
+
+				task.spawn(function()
+					OnRushSpawned(rush)
+				end)
+
+				repeat
+					task.wait(0.1)
+					rush = workspace:FindFirstChild("RushMoving")
+				until not rush
+
+				running = true
+				print("Rush gone, loop resumed")
+			end
+		end
+	end
+
+end)
+
 -- Hungry
 coroutine.wrap(function()
 while true do
@@ -290,7 +341,7 @@ screenGui.Parent = gui
 
 local titleImage = Instance.new("ImageLabel")
 titleImage.Size = Config.UI.Size
-titleImage.Position = UDim2.new(0.5, 0, targetYPos, 0)
+titleImage.Position = UDim2.new(0.5, 0, Config.UI.TargetY, 0)
 titleImage.AnchorPoint = Vector2.new(0.5, 0)
 titleImage.BackgroundTransparency = 1
 titleImage.Image = imgAsset
@@ -367,27 +418,25 @@ end
 end)
 
 local Config = {
-    RoomName = "53",
-    CheckFolderName = "CurrentRooms",
-    DelayBeforeRun = 0,
+	RoomName = "54",
 
-    Sound = {
-        Url = "https://github.com/thelostw3r/ScriptsForMyModes/blob/main/HorrorBeginChime.mp3?raw=true",
-        FileName = "HorrorBeginChime"
-    },
+	Sound = {
+		Url = "https://github.com/thelostw3r/ScriptsForMyModes/blob/main/HorrorBeginChime.mp3?raw=true",
+		FileName = "HorrorBeginChime.mp3"
+	},
 
-    Image = {
-        Url = "https://raw.githubusercontent.com/lynguyen26031993-design/-u/refs/heads/main/Khong_Co_Tieu_e11_20260524205545.png",
-        FileName = "DARKNESSTitle.png"
-    },
+	Image = {
+		Url = "https://raw.githubusercontent.com/lynguyen26031993-design/-u/refs/heads/main/Khong_Co_Tieu_e11_20260524205545.png",
+		FileName = "DARKNESSTitle.png"
+	},
 
-    UI = {
-        Size = UDim2.new(0, 400, 0, 110),
-        TargetY = 0.02,
-        ShadowOffset = 4,
-        TweenTime = 2.5,
-        HoldTime = 3.2
-    }
+	UI = {
+		Size = UDim2.new(0, 400, 0, 110),
+		TargetY = 0.02,
+		ShadowOffset = 4,
+		TweenTime = 2.5,
+		HoldTime = 3.2
+	}
 }
 
 local Players = game:GetService("Players")
@@ -397,15 +446,24 @@ local SoundService = game:GetService("SoundService")
 local player = Players.LocalPlayer
 local gui = player:WaitForChild("PlayerGui")
 
-local currentRooms = workspace:WaitForChild(Config.CheckFolderName)
+local currentRooms = workspace:WaitForChild("CurrentRooms")
+
+local darknessEnabled = false
+
+local function getGitAsset(url, fileName)
+	if not isfile(fileName) then
+		writefile(fileName, game:HttpGet(url))
+	end
+
+	return (getcustomasset or getsynasset)(fileName)
+end
 
 local function clearLights(obj)
 	for _, v in ipairs(obj:GetDescendants()) do
-		
+
 		if v:IsA("PointLight")
 		or v:IsA("SurfaceLight")
-		or v:IsA("SpotLight")
-		or v:IsA("Light") then
+		or v:IsA("SpotLight") then
 			v:Destroy()
 		end
 
@@ -415,54 +473,17 @@ local function clearLights(obj)
 	end
 end
 
-local function scanAll()
-	for _, obj in ipairs(currentRooms:GetChildren()) do
-		clearLights(obj)
-	end
-end
-
-scanAll()
-
-currentRooms.ChildAdded:Connect(function(obj)
-	task.wait(0.1)
-	clearLights(obj)
-end)
-
-currentRooms.DescendantAdded:Connect(function(obj)
-
-	if obj:IsA("PointLight")
-	or obj:IsA("SurfaceLight")
-	or obj:IsA("SpotLight")
-	or obj:IsA("Light") then
-		obj:Destroy()
-	end
-
-	if obj:IsA("BasePart") and obj.Material == Enum.Material.Neon then
-		obj.Material = Enum.Material.Plastic
-	end
-end)
-
-local function getGitAsset(url, fileName)
-	if not isfile(fileName .. ".mp3") and string.find(fileName, ".mp3") then
-		writefile(fileName .. ".mp3", game:HttpGet(url))
-	elseif not isfile(fileName) then
-		writefile(fileName, game:HttpGet(url))
-	end
-
-	return (getcustomasset or getsynasset)(
-		string.find(fileName, ".mp3") and (fileName .. ".mp3") or fileName
-	)
-end
-
 local function runIntro()
+
 	local sound = Instance.new("Sound")
 	sound.SoundId = getGitAsset(Config.Sound.Url, Config.Sound.FileName)
+	sound.Volume = 1
 	sound.Parent = SoundService
 
 	local imgAsset = getGitAsset(Config.Image.Url, Config.Image.FileName)
 
 	local screenGui = Instance.new("ScreenGui")
-	screenGui.Name = "IntroUI"
+	screenGui.Name = "DarknessIntro"
 	screenGui.IgnoreGuiInset = true
 	screenGui.ResetOnSpawn = false
 	screenGui.Parent = gui
@@ -481,7 +502,7 @@ local function runIntro()
 	local shadow = Instance.new("ImageLabel")
 	shadow.BackgroundTransparency = 1
 	shadow.Image = imgAsset
-	shadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+	shadow.ImageColor3 = Color3.fromRGB(0,0,0)
 	shadow.ImageTransparency = 1
 	shadow.Size = titleImage.Size
 	shadow.Position = UDim2.new(
@@ -490,60 +511,96 @@ local function runIntro()
 		Config.UI.TargetY,
 		Config.UI.ShadowOffset
 	)
-	shadow.AnchorPoint = Vector2.new(0.5, 0)
+	shadow.AnchorPoint = Vector2.new(0.5,0)
 	shadow.ZIndex = 9
 	shadow.ScaleType = Enum.ScaleType.Fit
 	shadow.Parent = screenGui
 
-	local info = TweenInfo.new(Config.UI.TweenTime, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
+	local info = TweenInfo.new(
+		Config.UI.TweenTime,
+		Enum.EasingStyle.Sine,
+		Enum.EasingDirection.Out
+	)
 
-	local fadeIn = TweenService:Create(titleImage, info, {ImageTransparency = 0})
-	local shadowIn = TweenService:Create(shadow, info, {ImageTransparency = 0.4})
+	local fadeIn = TweenService:Create(titleImage, info, {
+		ImageTransparency = 0
+	})
 
-	local fadeOut = TweenService:Create(titleImage, info, {ImageTransparency = 1})
-	local shadowOut = TweenService:Create(shadow, info, {ImageTransparency = 1})
+	local shadowIn = TweenService:Create(shadow, info, {
+		ImageTransparency = 0.4
+	})
+
+	local fadeOut = TweenService:Create(titleImage, info, {
+		ImageTransparency = 1
+	})
+
+	local shadowOut = TweenService:Create(shadow, info, {
+		ImageTransparency = 1
+	})
 
 	sound:Play()
 
 	fadeIn:Play()
 	shadowIn:Play()
+
 	fadeIn.Completed:Wait()
 
 	task.wait(Config.UI.HoldTime)
 
 	fadeOut:Play()
 	shadowOut:Play()
-	fadeOut.Completed:Wait()
 
-	task.wait(12)
+	fadeOut.Completed:Wait()
 
 	screenGui:Destroy()
 	sound:Destroy()
 end
 
-local triggered = false
+local function enableDarkness()
 
-local function checkRoom()
-	if triggered then return end
+	if darknessEnabled then
+		return
+	end
 
-	local room = currentRooms:FindFirstChild(Config.RoomName)
-	if room then
-		triggered = true
+	darknessEnabled = true
 
-		task.spawn(function()
-			task.wait(Config.DelayBeforeRun)
-			runIntro()
-		end)
+	print("Darkness mode enabled")
+
+	task.spawn(runIntro)
+
+	-- xÃ³a Ä‘Ã¨n tá»« room 53 trá»Ÿ Ä‘i
+	for _, room in ipairs(currentRooms:GetChildren()) do
+
+		local num = tonumber(room.Name)
+
+		if num and num >= 53 then
+			clearLights(room)
+		end
+	end
+
+	currentRooms.ChildAdded:Connect(function(room)
+
+		local num = tonumber(room.Name)
+
+		if num and num >= 53 then
+			task.wait(0.1)
+			clearLights(room)
+		end
+	end)
+end
+
+local function checkRoom(room)
+
+	if room.Name == Config.RoomName then
+		enableDarkness()
 	end
 end
 
-checkRoom()
+for _, room in ipairs(currentRooms:GetChildren()) do
+	checkRoom(room)
+end
 
-currentRooms.ChildAdded:Connect(function(child)
-	if child.Name == Config.RoomName then
-		checkRoom()
-	end
-end)
+currentRooms.ChildAdded:Connect(checkRoom)
 
 local Config = {
 	Damage = 90,
@@ -688,48 +745,3 @@ else
 		end
 	end)
 end
-
-game.Players.LocalPlayer.PlayerGui.MainUI.Jumpscare.Jumpscare_Rush.ImageLabel.ImageColor3 = Color3.fromRGB(255,0,0)
-game.Players.LocalPlayer.PlayerGui.MainUI.Jumpscare.Jumpscare_Rush.ImageLabelBig.ImageColor3 = Color3.fromRGB(255,0,0)
-
-local workspace = game:GetService("Workspace")
-
-local running = true
-
-local function OnRushSpawned(model)
-    print("Rush detected:", model.Name)
-
-    task.wait(0.5)
-
-game.Workspace.RushMoving.RushNew.Attachment.ParticleEmitter.Color = ColorSequence.new(Color3.fromRGB(255,0,0))
-
-game.Workspace.RushMoving.RushNew.PlaySound.PlaybackSpeed = 0.1
-game.Workspace.RushMoving.RushNew.Footsteps.PlaybackSpeed = 0.1
-
-workspace.RushMoving.RushNew.Attachment.BlackTrail.Color = ColorSequence.new(Color3.fromRGB(41,1,1))
-end
-
-while true do
-    if running then
-        local rush = workspace:FindFirstChild("RushMoving")
-
-        if rush and rush:IsA("Model") then
-            running = false
-
-            task.spawn(function()
-                OnRushSpawned(rush)
-            end)
-
-            repeat
-                task.wait(0.1)
-                rush = workspace:FindFirstChild("RushMoving")
-            until not rush
-
-            running = true
-            print("Rush gone, loop resumed")
-        end
-    end
-
-    task.wait(0.1)
-end
-
