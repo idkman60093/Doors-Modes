@@ -1,0 +1,10 @@
+local cue2 = Instance.new("Sound")
+cue2.Parent = game.Workspace
+cue2.Name = "Spawn"
+cue2.SoundId = "rbxassetid://9125712561"
+cue2.Volume = 4
+cue2.PlaybackSpeed = 1
+cue2.Looped = false
+cue2:Play()
+wait(4.6)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("(You): Who is screaming??, why do i feel like Im being followed.", true)
