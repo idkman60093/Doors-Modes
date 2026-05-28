@@ -264,6 +264,14 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-En
 end
 end)()
 
+-- Unknown
+coroutine.wrap(function()
+while true do
+wait(250)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Scream-666"))()
+end
+end)()
+
 -- Fear
 coroutine.wrap(function()
 while true do
