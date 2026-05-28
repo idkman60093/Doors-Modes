@@ -3,6 +3,7 @@ local Players = game:GetService("Players")
 local TextChatService = game:GetService("TextChatService")
 
 local PREFIX = "!"
+local hookedRooms = {}
 local COMMANDS = {
 	hungry = true,
 	nightmare_screech = true,
@@ -556,6 +557,19 @@ local function runIntro()
 	sound:Destroy()
 end
 
+local function hookRoom(room)
+	clearLights(room)
+
+	room.DescendantAdded:Connect(function()
+    task.wait()
+    clearLights(room)
+end)
+
+task.defer(function()
+	clearLights(room)
+end)
+end
+
 local function enableDarkness()
 
 	if darknessEnabled then
@@ -568,25 +582,19 @@ local function enableDarkness()
 
 	task.spawn(runIntro)
 
-	-- xÃ³a Ä‘Ã¨n tá»« room 53 trá»Ÿ Ä‘i
+	while darknessEnabled do
 	for _, room in ipairs(currentRooms:GetChildren()) do
+		local num = tonumber(room.Name:match("%d+"))
 
-		local num = tonumber(room.Name)
-
-		if num and num >= 53 then
-			clearLights(room)
-		end
+		if num and num >= 53 and not hookedRooms[room] then
+    hookedRooms[room] = true
+    hookRoom(room)
+end
 	end
 
-	currentRooms.ChildAdded:Connect(function(room)
+	task.wait(0.5)
+end
 
-		local num = tonumber(room.Name)
-
-		if num and num >= 53 then
-			task.wait(0.1)
-			clearLights(room)
-		end
-	end)
 end
 
 local function checkRoom(room)
