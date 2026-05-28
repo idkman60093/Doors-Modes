@@ -613,7 +613,7 @@ currentRooms.ChildAdded:Connect(checkRoom)
 local Config = {
 	Damage = 90,
 	Cooldown = 50,
-	TargetRoom = "54"
+	TargetRoom = "56"
 }
 
 local Players = game:GetService("Players")
