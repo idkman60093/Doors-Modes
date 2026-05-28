@@ -285,7 +285,7 @@ end)()
 local Config = {
 RoomName = "50",
 CheckFolderName = "CurrentRooms",
-DelayBeforeRun = 1,
+DelayBeforeRun = 0.5,
 
 Sound = {
 Url = "https://github.com/kodbolx/kodbolhub/blob/main/Nightmare%20Mode/Sounds/entrance.mp3?raw=true",
