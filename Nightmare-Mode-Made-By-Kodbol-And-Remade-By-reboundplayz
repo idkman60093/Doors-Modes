@@ -288,8 +288,8 @@ CheckFolderName = "CurrentRooms",
 DelayBeforeRun = 0.5,
 
 Sound = {
-Url = "https://github.com/kodbolx/kodbolhub/blob/main/Nightmare%20Mode/Sounds/entrance.mp3?raw=true",
-FileName = "entrance"
+Url = "https://github.com/idkman60093/Audio/raw/refs/heads/main/LibraryTitleSound.mp3",
+FileName = "LibraryTitleSound"
 },
 
 Image = {
