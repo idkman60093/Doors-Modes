@@ -17,7 +17,7 @@ local COMMANDS = {
 }
 
 local AllowedPlayers = {
-	["KardinGamingChair"] = true,
+	["kardindoorsgoat"] = true,
 	["TestingDoorsScrip"] = true,
     ["anbdnhucc"] = true
 }
