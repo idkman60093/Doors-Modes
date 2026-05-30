@@ -60,7 +60,7 @@ local function ExecuteCommand(cmd, sender)
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Hungry-Nightmare-Mode"))()
 
 	elseif cmd == "nightmare_screech" then
-		loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Screech%20Spawner"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Nightmare-Screech-Nightmare-Mode"))()
 
 	elseif cmd == "attraction" then
 		loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Attraction%20Spawner"))()
@@ -204,7 +204,7 @@ end)()
 coroutine.wrap(function()
 while true do
 wait(math.random(25, 45))
-loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Screech%20Spawner"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Nightmare-Screech-Nightmare-Mode"))()
 end
 end)()
 
