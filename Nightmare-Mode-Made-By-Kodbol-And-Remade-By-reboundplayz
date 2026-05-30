@@ -117,7 +117,6 @@ Players.PlayerAdded:Connect(HookPlayer)
 require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Nightmare Mode Successfully Executed", true)
 local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.com/Voor-Pr00/Achivements/refs/heads/main/Voorpr0"))()
 
----====== Display achievement ======---
 achievementGiver({
     Title = "The Nightmare Has Come...",
     Desc = "Run for your life",
@@ -192,7 +191,6 @@ task.spawn(function()
 
 end)
 
--- Hungry
 coroutine.wrap(function()
 while true do
 wait(math.random(15, 30))
@@ -200,7 +198,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-En
 end
 end)()
 
--- Nightmare Screech
 coroutine.wrap(function()
 while true do
 wait(math.random(25, 45))
@@ -208,8 +205,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-En
 end
 end)()
 
--- Attraction
----====== Load achievement giver ======---
 local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
 
 local hasAttractionBadge = false
@@ -218,63 +213,82 @@ coroutine.wrap(function()
     while true do
         task.wait(75)
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
-        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Attraction%20Spawner"))()
+        local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
+        if currentRoom == 50 or currentRoom == 51 then 
+            
+        else
+            loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Attraction%20Spawner"))()
 
-        if not hasAttractionBadge then
-    game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
-            hasAttractionBadge = true 
-            ---====== Display achievement ======---
-            achievementGiver({
-                Title = "Fatal Attraction",
-                Desc = "It saw you first.",
-                Reason = "Encounter Attraction",
-                Image = "rbxassetid://82356434155624"
-            })
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+            if not hasAttractionBadge then
+                hasAttractionBadge = true 
+                achievementGiver({
+                    Title = "Fatal Attraction",
+                    Desc = "It saw you first.",
+                    Reason = "Encounter Attraction",
+                    Image = "rbxassetid://82356434155624"
+                })
+            end
         end
     end
 end)()
 
--- A-60
 coroutine.wrap(function()
 while true do
 wait(150)
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
 wait(0)
+local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
+if currentRoom == 50 or currentRoom == 51 then
+
+else
 loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/A-60-Nightmare-Mode"))()
+end
 end
 end)()
 
--- Fire Guardian
 coroutine.wrap(function()
 while true do
 wait(105)
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
 wait(0)
+local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
+if currentRoom == 50 or currentRoom == 51 then
+
+else
 loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Fire-Guardian-Nightmare-Mode"))()
+end
 end
 end)()
 
--- Silent
 coroutine.wrap(function()
 while true do
 wait(math.random(180, 220))
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
 wait(0)
+local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
+if currentRoom == 50 or currentRoom == 51 then
+
+else
 loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Silent-Nightmare-Mode"))()
+end
 end
 end)()
 
--- Fear
 coroutine.wrap(function()
 while true do
 wait(math.random(280, 300))
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
 wait(0)
+local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
+if currentRoom == 50 or currentRoom == 51 then
+
+else
 loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Fear-Nightmare-Mode"))()
+end
 end
 end)()
 
--- B-60
 coroutine.wrap(function()
 while true do
 wait(math.random(350, 540))
