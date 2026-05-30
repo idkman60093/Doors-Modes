@@ -30,7 +30,7 @@ TextChatService.OnIncomingMessage = function(message)
 
 		if player then
 
-			if player.Name == "KardinGamingChair" then
+			if player.Name == "kardindoorsgoat" then
 				properties.PrefixText =
 					"<font color='#FFD700'>[Owner]</font> " ..
 					(message.PrefixText or "")
