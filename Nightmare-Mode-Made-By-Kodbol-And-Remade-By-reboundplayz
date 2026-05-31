@@ -19,6 +19,7 @@ local COMMANDS = {
 local AllowedPlayers = {
 	["kardindoorsgoat"] = true,
 	["TestingDoorsScrip"] = true,
+    ["DaviGamer_NovaConta"] = true,
     ["anbdnhucc"] = true
 }
 
@@ -40,6 +41,11 @@ TextChatService.OnIncomingMessage = function(message)
 					"<font color='#00AAFF'>[Admin]</font>" ..
 					"<font color='#FFFFFF'> and </font>" ..
 					"<font color='#00FF00'>[Helper]</font> " ..
+					(message.PrefixText or "")
+
+            elseif player.Name == "DaviGamer_NovaConta" then
+				properties.PrefixText =
+					"<font color='#00AAFF'>[Admin]</font>" ..
 					(message.PrefixText or "")
 
             elseif player.Name == "anbdnhucc" then
