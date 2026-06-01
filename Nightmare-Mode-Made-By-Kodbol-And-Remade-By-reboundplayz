@@ -13,7 +13,11 @@ local COMMANDS = {
 	silent = true,
 	["B-60"] = true,
 	fear = true,
-    ["A-90"] = true
+    ["A-90"] = true,
+    fart = true,
+    superpower = true,
+    troll = true,
+    freddy = true
 }
 
 local AllowedPlayers = {
@@ -88,6 +92,18 @@ local function ExecuteCommand(cmd, sender)
 
     elseif cmd == "A-90" then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/A-90-Nightmare-Mode"))()
+
+    elseif cmd == "fart" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Audio/refs/heads/main/Fart-Sound"))()
+
+    elseif cmd == "superpower" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Audio/refs/heads/main/epic-superpower"))()
+
+    elseif cmd == "troll" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Audio/refs/heads/main/Troll-Face"))()
+
+    elseif cmd == "freddy" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Audio/refs/heads/main/Freddy-ArArArAr"))()
 	end
 end
 
