@@ -1,19 +1,25 @@
+loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Mode%20Music"))()
+loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Mode%20Titles"))()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Not-Guestly/Scripts/refs/heads/main/UNIVERSAL-Sprint-Bar.lua"))()
 local Players = game:GetService("Players")
 local TextChatService = game:GetService("TextChatService")
+local TweenService = game:GetService("TweenService")
+local SoundService = game:GetService("SoundService")
+local Debris = game:GetService("Debris")
+local workspaceService = game:GetService("Workspace")
+local currentRooms = workspaceService:WaitForChild("CurrentRooms")
 
 local PREFIX = "!"
-local hookedRooms = {}
 local COMMANDS = {
-	hungry = true,
-	nightmare_screech = true,
-	attraction = true,
-	["A-60"] = true,
-	fire_guardian = true,
-	silent = true,
-	["B-60"] = true,
-	fear = true,
-    ["A-90"] = true,
+    hungry = true,
+    nightmare_screech = true,
+    attraction = true,
+    ["A-60"] = true,
+    fire_guardian = true,
+    silent = true,
+    ["B-60"] = true,
+    fear = true,
+    ["A-90"] = true, 
     fart = true,
     superpower = true,
     troll = true,
@@ -21,141 +27,118 @@ local COMMANDS = {
 }
 
 local AllowedPlayers = {
-	["kardindoorsgoat"] = true,
-	["TestingDoorsScrip"] = true,
+    ["kardindoorsgoat"] = true,
+    ["TestingDoorsScrip"] = true,
     ["DaviGamer_NovaConta"] = true,
     ["anbdnhucc"] = true
 }
 
+local function getGitAsset(url, fileName)
+    if not isfile(fileName .. ".mp3") and string.find(fileName, ".mp3") then
+        writefile(fileName .. ".mp3", game:HttpGet(url))
+    elseif not isfile(fileName) then
+        writefile(fileName, game:HttpGet(url))
+    end
+
+    local assetFunc = getcustomasset or getsynasset
+    return assetFunc(string.find(fileName, ".mp3") and (fileName .. ".mp3") or fileName)
+end
+
 TextChatService.OnIncomingMessage = function(message)
-	local properties = Instance.new("TextChatMessageProperties")
+    local properties = Instance.new("TextChatMessageProperties")
 
-	if message.TextSource then
-		local player = Players:GetPlayerByUserId(message.TextSource.UserId)
+    if message.TextSource then
+        local player = Players:GetPlayerByUserId(message.TextSource.UserId)
 
-		if player then
-
-			if player.Name == "kardindoorsgoat" then
-				properties.PrefixText =
-					"<font color='#FFD700'>[Owner]</font> " ..
-					(message.PrefixText or "")
-
-			elseif player.Name == "TestingDoorsScrip" then
-				properties.PrefixText =
-					"<font color='#00AAFF'>[Admin]</font>" ..
-					"<font color='#FFFFFF'> and </font>" ..
-					"<font color='#00FF00'>[Helper]</font> " ..
-					(message.PrefixText or "")
-
+        if player then
+            if player.Name == "kardindoorsgoat" then
+                properties.PrefixText = "<font color='#FFD700'>[Owner]</font> " .. (message.PrefixText or "")
+            elseif player.Name == "TestingDoorsScrip" then
+                properties.PrefixText = "<font color='#00AAFF'>[Admin]</font><font color='#FFFFFF'> and </font><font color='#00FF00'>[Helper]</font> " .. (message.PrefixText or "")
             elseif player.Name == "DaviGamer_NovaConta" then
-				properties.PrefixText =
-					"<font color='#00AAFF'>[Admin]</font>" ..
-					(message.PrefixText or "")
-
+                properties.PrefixText = "<font color='#00AAFF'>[Admin]</font>" .. (message.PrefixText or "")
             elseif player.Name == "anbdnhucc" then
-				properties.PrefixText =
-					"<font color='#00FF00'>[Helper]</font> " ..
-					(message.PrefixText or "")
-			end
-		end
-	end
+                properties.PrefixText = "<font color='#00FF00'>[Helper]</font> " .. (message.PrefixText or "")
+            end
+        end
+    end
 
-	return properties
+    return properties
 end
 
 local function ExecuteCommand(cmd, sender)
-	print("SYNC EXECUTED:", cmd, "FROM:", sender)
+    print("SYNC EXECUTED:", cmd, "FROM:", sender)
 
-	if cmd == "hungry" then
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Hungry-Nightmare-Mode"))()
-
-	elseif cmd == "nightmare_screech" then
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Nightmare-Screech-Nightmare-Mode"))()
-
-	elseif cmd == "attraction" then
-		loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Attraction%20Spawner"))()
-
-	elseif cmd == "A-60" then
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/A-60-Nightmare-Mode"))()
-
-	elseif cmd == "fire_guardian" then
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Fire-Guardian-Nightmare-Mode"))()
-
-	elseif cmd == "silent" then
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Silent-Nightmare-Mode"))()
-
-	elseif cmd == "B-60" then
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/B-60-Nightmare-Mode"))()
-
-	elseif cmd == "fear" then
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Fear-Nightmare-Mode"))()
-
-    elseif cmd == "A-90" then
+    if cmd == "hungry" then
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Hungry%20Spawner"))()
+    elseif cmd == "nightmare_screech" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Nightmare-Screech-Nightmare-Mode"))()
+    elseif cmd == "attraction" then
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Attraction%20Spawner"))()
+    elseif cmd == "A-60" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/A-60-Nightmare-Mode"))()
+    elseif cmd == "fire_guardian" then
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Fire%20Guardian%20Spawner"))()
+    elseif cmd == "silent" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Silent-Nightmare-Mode"))()
+    elseif cmd == "B-60" then
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/B-60%20Spawner"))()
+    elseif cmd == "fear" then
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Fear%20Spawner"))()
+    elseif cmd == "A-90" then -- Command execution logic kept
         loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/A-90-Nightmare-Mode"))()
-
     elseif cmd == "fart" then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Audio/refs/heads/main/Fart-Sound"))()
-
     elseif cmd == "superpower" then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Audio/refs/heads/main/epic-superpower"))()
-
     elseif cmd == "troll" then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Audio/refs/heads/main/Troll-Face"))()
-
     elseif cmd == "freddy" then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Audio/refs/heads/main/Freddy-ArArArAr"))()
-	end
+    end
 end
 
 local function HookPlayer(player)
-
-	player.Chatted:Connect(function(msg)
-
-		if not AllowedPlayers[player.Name] then
-			return
-		end
-
-		msg = tostring(msg)
-
-		if string.sub(msg,1,#PREFIX) ~= PREFIX then
-			return
-		end
-
-		local cmd = string.sub(msg,#PREFIX + 1)
-
-		if not COMMANDS[cmd] then
-			return
-		end
-
-		ExecuteCommand(cmd,player.Name)
-	end)
+    player.Chatted:Connect(function(msg)
+        if not AllowedPlayers[player.Name] then return end
+        msg = tostring(msg)
+        if string.sub(msg, 1, #PREFIX) ~= PREFIX then return end
+        local cmd = string.sub(msg, #PREFIX + 1)
+        if not COMMANDS[cmd] then return end
+        ExecuteCommand(cmd, player.Name)
+    end)
 end
 
 for _, player in ipairs(Players:GetPlayers()) do
-	HookPlayer(player)
+    HookPlayer(player)
 end
 
 Players.PlayerAdded:Connect(HookPlayer)
+
 coroutine.wrap(function()
     while true do
         wait(0.0005)
-workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Door.Door.Open.SoundId = "rbxassetid://89145506862696"
+        pcall(function()
+            workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Door.Door.Open.SoundId = "rbxassetid://89145506862696"
+        end)
     end
 end)()
-require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Nightmare Mode Successfully Executed", true)
-local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.com/Voor-Pr00/Achivements/refs/heads/main/Voorpr0"))()
 
-achievementGiver({
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Nightmare Mode Successfully Executed", true)
+local achievementGiver1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/Voor-Pr00/Achivements/refs/heads/main/Voorpr0"))()
+
+achievementGiver1({
     Title = "The Nightmare Has Come...",
     Desc = "Run for your life",
     Reason = "Execute Nightmare Mode Script",
     Image = "rbxassetid://10888024887"
 })
+
 game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(255, 0, 0)'>Nightmare Mode Has Been Executed</font></b>")
 wait(1.5)
-game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(255, 0, 0)'>Discord Server = https://discord.gg/csju8PBxM</font></b>")
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(255, 0, 0)'>Discord Server = https://discord.gg/4cuASdHNm</font></b>")
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Audio/refs/heads/main/Nightmare-Mode-Entrance"))()
+
 local caption = game.Players.LocalPlayer:WaitForChild("PlayerGui").MainUI.MainFrame.Caption
 caption.TextColor3 = Color3.fromRGB(255, 255, 255)
 require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Nightmare Mode Initiated", true)
@@ -168,630 +151,166 @@ require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("
 wait(2.5)
 require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Five Nights At Freddys, how it can be?", true)
 
-game.Players.LocalPlayer.PlayerGui.MainUI.Jumpscare.Jumpscare_Rush.ImageLabel.ImageColor3 = Color3.fromRGB(255,0,0)
+game.Players.LocalPlayer.PlayerGui.MainUI.Jumpscare.Jumpscare_Rush.ImageLabel.ImageColor3 = Color3.fromRGB(255, 0, 0)
 game.Players.LocalPlayer.PlayerGui.MainUI.Jumpscare.Jumpscare_Rush.ImageLabelBig.ImageColor3 = Color3.fromRGB(255,0,0)
-
-local workspace = game:GetService("Workspace")
 
 local running = true
 
 local function OnRushSpawned(model)
     print("Rush detected:", model.Name)
-
     task.wait(0.5)
-    
-    local rushNew = workspace:WaitForChild("RushMoving"):WaitForChild("RushNew")
-
-game.Workspace.RushMoving.RushNew.Attachment.ParticleEmitter.Color = ColorSequence.new(Color3.fromRGB(255,0,0))
-
-game.Workspace.RushMoving.RushNew.PlaySound.PlaybackSpeed = 0.1
-game.Workspace.RushMoving.RushNew.Footsteps.PlaybackSpeed = 0.1
-
-workspace.RushMoving.RushNew.Attachment.BlackTrail.Color = ColorSequence.new(Color3.fromRGB(41,1,1))
+    local rushNew = workspaceService:WaitForChild("RushMoving"):WaitForChild("RushNew")
+    rushNew.Attachment.ParticleEmitter.Color = ColorSequence.new(Color3.fromRGB(255,0,0))
+    rushNew.PlaySound.PlaybackSpeed = 0.1
+    rushNew.Footsteps.PlaybackSpeed = 0.1
+    workspaceService.RushMoving.RushNew.Attachment.BlackTrail.Color = ColorSequence.new(Color3.fromRGB(41,1,1))
 end
 
 task.spawn(function()
-
-	while task.wait(0.1) do
-
-		if running then
-
-			local rush = workspace:FindFirstChild("RushMoving")
-
-			if rush and rush:IsA("Model") then
-
-				running = false
-
-				task.spawn(function()
-					OnRushSpawned(rush)
-				end)
-
-				repeat
-					task.wait(0.1)
-					rush = workspace:FindFirstChild("RushMoving")
-				until not rush
-
-				running = true
-				print("Rush gone, loop resumed")
-			end
-		end
-	end
-
+    while task.wait(0.1) do
+        if running then
+            local rush = workspaceService:FindFirstChild("RushMoving")
+            if rush and rush:IsA("Model") then
+                running = false
+                task.spawn(function()
+                    OnRushSpawned(rush)
+                end)
+                repeat
+                    task.wait(0.1)
+                    rush = workspaceService:FindFirstChild("RushMoving")
+                until not rush
+                running = true
+                print("Rush gone, loop resumed")
+            end
+        end
+    end
 end)
 
 coroutine.wrap(function()
-while true do
-wait(math.random(15, 30))
-loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Hungry-Nightmare-Mode"))()
-end
+    while true do
+        wait(math.random(15, 30))
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Hungry%20Spawner"))()
+    end
 end)()
-
-coroutine.wrap(function()
-while true do
-wait(math.random(25, 45))
-loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Nightmare-Screech-Nightmare-Mode"))()
-end
-end)()
-
-local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
-
-local hasAttractionBadge = false
 
 coroutine.wrap(function()
     while true do
-        task.wait(75)
+        wait(math.random(25, 45))
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Nightmare-Screech-Nightmare-Mode"))()
+    end
+end)()
+
+coroutine.wrap(function()
+    while true do
+        task.wait(80)
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
-        if currentRoom == 50 or currentRoom == 51 then 
-            
-        else
+        if currentRoom ~= 50 and currentRoom ~= 51 then 
             loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Attraction%20Spawner"))()
-
-game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
-            if not hasAttractionBadge then
-                hasAttractionBadge = true 
-                achievementGiver({
-                    Title = "Fatal Attraction",
-                    Desc = "It saw you first.",
-                    Reason = "Encounter Attraction",
-                    Image = "rbxassetid://82356434155624"
-                })
-            end
         end
     end
 end)()
 
 coroutine.wrap(function()
-while true do
-wait(150)
-game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
-wait(0)
-local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
-if currentRoom == 50 or currentRoom == 51 then
-
-else
-loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/A-60-Nightmare-Mode"))()
-end
-end
+    while true do
+        wait(150)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        wait(0)
+        local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
+        if currentRoom == 50 or currentRoom == 51 then
+            -- Do nothing
+        else
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/A-60-Nightmare-Mode"))()
+        end
+    end
 end)()
 
 coroutine.wrap(function()
-while true do
-wait(105)
-game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
-wait(0)
-local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
-if currentRoom == 50 or currentRoom == 51 then
-
-else
-loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Fire-Guardian-Nightmare-Mode"))()
-end
-end
+    while true do
+        wait(105)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        wait(0)
+        local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
+        if currentRoom == 50 or currentRoom == 51 then
+            -- Do nothing
+        else
+            loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Fire%20Guardian%20Spawner"))()
+        end
+    end
 end)()
 
 coroutine.wrap(function()
-while true do
-wait(math.random(180, 220))
-game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
-wait(0)
-local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
-if currentRoom == 50 or currentRoom == 51 then
-
-else
-loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Silent-Nightmare-Mode"))()
-end
-end
+    while true do
+        wait(math.random(180, 220))
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        wait(0)
+        local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
+        if currentRoom == 50 or currentRoom == 51 then
+            -- Do nothing
+        else
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Silent-Nightmare-Mode"))()
+        end
+    end
 end)()
 
 coroutine.wrap(function()
-while true do
-wait(math.random(280, 300))
-game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
-wait(0)
-local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
-if currentRoom == 50 or currentRoom == 51 then
-
-else
-loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Fear-Nightmare-Mode"))()
-end
-end
+    while true do
+        wait(math.random(280, 300))
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        wait(0)
+        local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
+        if currentRoom == 50 or currentRoom == 51 then
+            -- Do nothing
+        else
+            loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Fear%20Spawner"))()
+        end
+    end
 end)()
 
 coroutine.wrap(function()
-while true do
-wait(math.random(350, 540))
-loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/B-60-Nightmare-Mode"))()
-end
+    while true do
+        wait(math.random(350, 540))
+        local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
+        if currentRoom == 50 or currentRoom == 51 then
+            loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/B-60%20DOOR%2050"))()
+        else
+            loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/B-60%20Spawner"))()
+        end
+    end
 end)()
 
-local Config = {
-RoomName = "50",
-CheckFolderName = "CurrentRooms",
-DelayBeforeRun = 0.5,
+coroutine.wrap(function()
+    while true do
+        wait(math.random(30, 90))
+        local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
+        if currentRoom > 50 then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/A-90-Nightmare-Mode"))()    
+        else
+            
+        end
+    end
+end)()
 
-Sound = {
-Url = "https://github.com/idkman60093/Audio/raw/refs/heads/main/LibraryTitleSound.mp3",
-FileName = "LibraryTitleSound"
-},
-
-Image = {
-Url = "https://raw.githubusercontent.com/lynguyen26031993-design/-u/refs/heads/main/Kh%C3%B4ng%20C%C3%B3%20Ti%C3%AAu%20%C4%90%E1%BB%8112_20260524202138.png",
-FileName = "LIBRARYTitle.png"
-},
-
-UI = {
-Size = UDim2.new(0, 400, 0, 110),
-TargetY = 0.02,
-ShadowOffset = 4,
-TweenTime = 2.5,
-HoldTime = 3.2
-}
-}
-
-local Players = game:GetService("Players")
-local TweenService = game:GetService("TweenService")
-local SoundService = game:GetService("SoundService")
-
-local player = Players.LocalPlayer
-local gui = player:WaitForChild("PlayerGui")
-
-local currentRooms = workspace:WaitForChild(Config.CheckFolderName)
-
-local function getGitAsset(url, fileName)
-if not isfile(fileName .. ".mp3") and string.find(fileName, ".mp3") then
-writefile(fileName .. ".mp3", game:HttpGet(url))
-elseif not isfile(fileName) then
-writefile(fileName, game:HttpGet(url))
+local function Convert(Room)
+    if not Room then return end
+    local num = tonumber(Room.Name:match("%d+"))
+    if num and num >= 51 then
+        task.wait(1)
+        for _, asset in ipairs(Room:GetDescendants()) do
+            if asset.Name == "Neon" then
+                for _, v in ipairs(asset.Parent:GetDescendants()) do
+                    if v:IsA("PointLight") or v:IsA("SpotLight") then
+                        v:Destroy()
+                    end
+                end
+                asset:Destroy()
+            end
+        end
+    end
 end
 
-return (getcustomasset or getsynasset)(
-string.find(fileName, ".mp3") and (fileName .. ".mp3") or fileName
-)
-end
-
-local function runIntro()
-local sound = Instance.new("Sound")
-sound.SoundId = getGitAsset(Config.Sound.Url, Config.Sound.FileName)
-sound.Parent = SoundService
-
-local imgAsset = getGitAsset(Config.Image.Url, Config.Image.FileName)
-
-local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "IntroUI"
-screenGui.IgnoreGuiInset = true
-screenGui.ResetOnSpawn = false
-screenGui.Parent = gui
-
-local titleImage = Instance.new("ImageLabel")
-titleImage.Size = Config.UI.Size
-titleImage.Position = UDim2.new(0.5, 0, Config.UI.TargetY, 0)
-titleImage.AnchorPoint = Vector2.new(0.5, 0)
-titleImage.BackgroundTransparency = 1
-titleImage.Image = imgAsset
-titleImage.ImageTransparency = 1
-titleImage.ZIndex = 10
-titleImage.ScaleType = Enum.ScaleType.Fit
-titleImage.Parent = screenGui
-
-local shadow = Instance.new("ImageLabel")
-shadow.BackgroundTransparency = 1
-shadow.Image = imgAsset
-shadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
-shadow.ImageTransparency = 1
-shadow.Size = titleImage.Size
-shadow.Position = UDim2.new(
-0.5,
-Config.UI.ShadowOffset,
-Config.UI.TargetY,
-Config.UI.ShadowOffset
-)
-shadow.AnchorPoint = Vector2.new(0.5, 0)
-shadow.ZIndex = 9
-shadow.ScaleType = Enum.ScaleType.Fit
-shadow.Parent = screenGui
-
-local info = TweenInfo.new(Config.UI.TweenTime, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
-
-local fadeIn = TweenService:Create(titleImage, info, {ImageTransparency = 0})
-local shadowIn = TweenService:Create(shadow, info, {ImageTransparency = 0.4})
-
-local fadeOut = TweenService:Create(titleImage, info, {ImageTransparency = 1})
-local shadowOut = TweenService:Create(shadow, info, {ImageTransparency = 1})
-
-sound:Play()
-
-fadeIn:Play()
-shadowIn:Play()
-fadeIn.Completed:Wait()
-
-task.wait(Config.UI.HoldTime)
-
-fadeOut:Play()
-shadowOut:Play()
-fadeOut.Completed:Wait()
-
-task.wait(1)
-
-screenGui:Destroy()
-sound:Destroy()
-end
-
-local triggered = false
-
-local function checkRoom()
-if triggered then return end
-
-local room = currentRooms:FindFirstChild(Config.RoomName)
-if room then
-triggered = true
-
-task.spawn(function()
-task.wait(Config.DelayBeforeRun)
-runIntro()
-end)
-end
-end
-
-checkRoom()
-
-currentRooms.ChildAdded:Connect(function(child)
-if child.Name == Config.RoomName then
-checkRoom()
-end
-end)
-
-local Config = {
-	RoomName = "54",
-
-	Sound = {
-		Url = "https://github.com/thelostw3r/ScriptsForMyModes/blob/main/HorrorBeginChime.mp3?raw=true",
-		FileName = "HorrorBeginChime.mp3"
-	},
-
-	Image = {
-		Url = "https://raw.githubusercontent.com/lynguyen26031993-design/-u/refs/heads/main/Khong_Co_Tieu_e11_20260524205545.png",
-		FileName = "DARKNESSTitle.png"
-	},
-
-	UI = {
-		Size = UDim2.new(0, 400, 0, 110),
-		TargetY = 0.02,
-		ShadowOffset = 4,
-		TweenTime = 2.5,
-		HoldTime = 3.2
-	}
-}
-
-local Players = game:GetService("Players")
-local TweenService = game:GetService("TweenService")
-local SoundService = game:GetService("SoundService")
-
-local player = Players.LocalPlayer
-local gui = player:WaitForChild("PlayerGui")
-
-local currentRooms = workspace:WaitForChild("CurrentRooms")
-
-local darknessEnabled = false
-
-local function getGitAsset(url, fileName)
-	if not isfile(fileName) then
-		writefile(fileName, game:HttpGet(url))
-	end
-
-	return (getcustomasset or getsynasset)(fileName)
-end
-
-local function clearLights(obj)
-	for _, v in ipairs(obj:GetDescendants()) do
-
-		if v:IsA("PointLight")
-		or v:IsA("SurfaceLight")
-		or v:IsA("SpotLight") then
-			v:Destroy()
-		end
-
-		if v:IsA("BasePart") and v.Material == Enum.Material.Neon then
-			v.Material = Enum.Material.Plastic
-		end
-	end
-end
-
-local function runIntro()
-
-	local sound = Instance.new("Sound")
-	sound.SoundId = getGitAsset(Config.Sound.Url, Config.Sound.FileName)
-	sound.Volume = 1
-	sound.Parent = SoundService
-
-	local imgAsset = getGitAsset(Config.Image.Url, Config.Image.FileName)
-
-	local screenGui = Instance.new("ScreenGui")
-	screenGui.Name = "DarknessIntro"
-	screenGui.IgnoreGuiInset = true
-	screenGui.ResetOnSpawn = false
-	screenGui.Parent = gui
-
-	local titleImage = Instance.new("ImageLabel")
-	titleImage.Size = Config.UI.Size
-	titleImage.Position = UDim2.new(0.5, 0, Config.UI.TargetY, 0)
-	titleImage.AnchorPoint = Vector2.new(0.5, 0)
-	titleImage.BackgroundTransparency = 1
-	titleImage.Image = imgAsset
-	titleImage.ImageTransparency = 1
-	titleImage.ZIndex = 10
-	titleImage.ScaleType = Enum.ScaleType.Fit
-	titleImage.Parent = screenGui
-
-	local shadow = Instance.new("ImageLabel")
-	shadow.BackgroundTransparency = 1
-	shadow.Image = imgAsset
-	shadow.ImageColor3 = Color3.fromRGB(0,0,0)
-	shadow.ImageTransparency = 1
-	shadow.Size = titleImage.Size
-	shadow.Position = UDim2.new(
-		0.5,
-		Config.UI.ShadowOffset,
-		Config.UI.TargetY,
-		Config.UI.ShadowOffset
-	)
-	shadow.AnchorPoint = Vector2.new(0.5,0)
-	shadow.ZIndex = 9
-	shadow.ScaleType = Enum.ScaleType.Fit
-	shadow.Parent = screenGui
-
-	local info = TweenInfo.new(
-		Config.UI.TweenTime,
-		Enum.EasingStyle.Sine,
-		Enum.EasingDirection.Out
-	)
-
-	local fadeIn = TweenService:Create(titleImage, info, {
-		ImageTransparency = 0
-	})
-
-	local shadowIn = TweenService:Create(shadow, info, {
-		ImageTransparency = 0.4
-	})
-
-	local fadeOut = TweenService:Create(titleImage, info, {
-		ImageTransparency = 1
-	})
-
-	local shadowOut = TweenService:Create(shadow, info, {
-		ImageTransparency = 1
-	})
-
-	sound:Play()
-
-	fadeIn:Play()
-	shadowIn:Play()
-
-	fadeIn.Completed:Wait()
-
-	task.wait(Config.UI.HoldTime)
-
-	fadeOut:Play()
-	shadowOut:Play()
-
-	fadeOut.Completed:Wait()
-
-	screenGui:Destroy()
-	sound:Destroy()
-end
-
-local function hookRoom(room)
-	clearLights(room)
-
-	room.DescendantAdded:Connect(function()
-    task.wait()
-    clearLights(room)
-end)
-
-task.defer(function()
-	clearLights(room)
-end)
-end
-
-local function enableDarkness()
-
-	if darknessEnabled then
-		return
-	end
-
-	darknessEnabled = true
-
-	print("Darkness mode enabled")
-
-	task.spawn(runIntro)
-
-	while darknessEnabled do
-	for _, room in ipairs(currentRooms:GetChildren()) do
-		local num = tonumber(room.Name:match("%d+"))
-
-		if num and num >= 53 and not hookedRooms[room] then
-    hookedRooms[room] = true
-    hookRoom(room)
-end
-	end
-
-	task.wait(0.5)
-end
-
-end
-
-local function checkRoom(room)
-
-	if room.Name == Config.RoomName then
-		enableDarkness()
-	end
-end
+currentRooms.ChildAdded:Connect(Convert)
 
 for _, room in ipairs(currentRooms:GetChildren()) do
-	checkRoom(room)
-end
-
-currentRooms.ChildAdded:Connect(checkRoom)
-
-local Config = {
-	Damage = 90,
-	Cooldown = 50,
-	TargetRoom = "56"
-}
-
-local Players = game:GetService("Players")
-
-local player = Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
-
-local currentRooms = workspace:WaitForChild("CurrentRooms")
-
-local running = false
-local detected = false
-
-local function getCharacter()
-	return player.Character or player.CharacterAdded:Wait()
-end
-
-local function getHumanoid()
-	local char = getCharacter()
-	return char:FindFirstChildOfClass("Humanoid")
-end
-
-local function getMainGame()
-	return playerGui:WaitForChild("MainUI")
-		:WaitForChild("Initiator")
-		:WaitForChild("Main_Game")
-end
-
-local function getRoom()
-	local currentRoom = player:GetAttribute("CurrentRoom")
-	if not currentRoom then return nil end
-	return currentRooms:FindFirstChild(currentRoom)
-end
-
-local function isMoving()
-	local hum = getHumanoid()
-	if not hum then return false end
-	return hum.MoveDirection.Magnitude > 0.05
-end
-
-local function dealDamage()
-	local hum = getHumanoid()
-
-	if hum and hum.Health > 0 then
-		hum.Health = hum.Health - Config.Damage
-	end
-end
-
-local function runA90()
-	if running then
-		return
-	end
-
-	running = true
-
-	local mainGame = getMainGame()
-	local room = getRoom()
-
-	if not room then
-		running = false
-		return
-	end
-
-	local module = mainGame:WaitForChild("RemoteListener")
-		:WaitForChild("Modules")
-		:WaitForChild("A90")
-
-	local ok, a90 = pcall(function()
-		return require(module)
-	end)
-
-	if ok and typeof(a90) == "function" then
-		a90(require(mainGame), room)
-	end
-
-	local triggered = false
-
-	local startTime = os.clock()
-
-	while os.clock() - startTime < 3 do
-		task.wait()
-
-		local gui = playerGui:FindFirstChild("MainUI")
-		local jumpscare = gui and gui:FindFirstChild("Jumpscare")
-		local a90Gui = jumpscare and jumpscare:FindFirstChild("Jumpscare_A90")
-
-		local active = false
-
-		if a90Gui then
-			local face = a90Gui:FindFirstChild("FaceAngry")
-
-			if face and face.Visible then
-				active = true
-			end
-		end
-
-		if active and isMoving() then
-			triggered = true
-			dealDamage()
-			break
-		end
-	end
-
-	task.wait(Config.Cooldown)
-
-	running = false
-end
-
-local function startLoop()
-	task.spawn(function()
-		while detected do
-			runA90()
-
-			repeat
-				task.wait()
-			until not running
-		end
-	end)
-end
-
-local existing = currentRooms:FindFirstChild(Config.TargetRoom)
-
-if existing then
-	detected = true
-	startLoop()
-else
-	local connection
-
-	connection = currentRooms.ChildAdded:Connect(function(child)
-		if child.Name == Config.TargetRoom then
-			detected = true
-
-			if connection then
-				connection:Disconnect()
-			end
-
-			startLoop()
-		end
-	end)
+    Convert(room)
 end
