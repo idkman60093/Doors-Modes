@@ -3,9 +3,9 @@ loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/r
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Not-Guestly/Scripts/refs/heads/main/UNIVERSAL-Sprint-Bar.lua"))()
 local Players = game:GetService("Players")
 local TextChatService = game:GetService("TextChatService")
-local TweenService = game:GetService("TweenService")
-local SoundService = game:GetService("SoundService")
-local Debris = game:GetService("Debris")
+local _TweenService = game:GetService("TweenService")
+local _SoundService = game:GetService("SoundService")
+local _Debris = game:GetService("Debris")
 local workspaceService = game:GetService("Workspace")
 local currentRooms = workspaceService:WaitForChild("CurrentRooms")
 
@@ -33,7 +33,7 @@ local AllowedPlayers = {
     ["anbdnhucc"] = true
 }
 
-local function getGitAsset(url, fileName)
+local function _getGitAsset(url, fileName)
     if not isfile(fileName .. ".mp3") and string.find(fileName, ".mp3") then
         writefile(fileName .. ".mp3", game:HttpGet(url))
     elseif not isfile(fileName) then
@@ -80,7 +80,7 @@ local function ExecuteCommand(cmd, sender)
     elseif cmd == "fire_guardian" then
         loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Fire%20Guardian%20Spawner"))()
     elseif cmd == "silent" then
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Silent-Nightmare-Mode"))()
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Silent%20Spawner"))()
     elseif cmd == "B-60" then
         loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/B-60%20Spawner"))()
     elseif cmd == "fear" then
@@ -248,7 +248,7 @@ coroutine.wrap(function()
         if currentRoom == 50 or currentRoom == 51 then
             -- Do nothing
         else
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Silent-Nightmare-Mode"))()
+            loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Silent%20Spawner"))()
         end
     end
 end)()
