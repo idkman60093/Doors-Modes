@@ -1,3 +1,5 @@
+loadstring(game:httpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Guiding%20Light%20Music"))()
+loadstring(game:httpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Mode%20Rigs"))()
 loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Mode%20Music"))()
 loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Mode%20Titles"))()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Not-Guestly/Scripts/refs/heads/main/UNIVERSAL-Sprint-Bar.lua"))()
@@ -76,7 +78,7 @@ local function ExecuteCommand(cmd, sender)
     elseif cmd == "attraction" then
         loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Attraction%20Spawner"))()
     elseif cmd == "A-60" then
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/A-60-Nightmare-Mode"))()
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/A-60%20(LSPLASH%20version)%20Spawner"))()
     elseif cmd == "fire_guardian" then
         loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Fire%20Guardian%20Spawner"))()
     elseif cmd == "silent" then
@@ -124,19 +126,19 @@ coroutine.wrap(function()
     end
 end)()
 
-require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Nightmare Mode Successfully Executed", true)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Nightmare Mode V2.2 Successfully Executed", true)
 local achievementGiver1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/Voor-Pr00/Achivements/refs/heads/main/Voorpr0"))()
 
 achievementGiver1({
     Title = "The Nightmare Has Come...",
     Desc = "Run for your life",
     Reason = "Execute Nightmare Mode Script",
-    Image = "rbxassetid://125512121017894"
+    Image = "rbxassetid://10888024887"
 })
 
 game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(255, 0, 0)'>Nightmare Mode Has Been Executed</font></b>")
 wait(1.5)
-game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(255, 0, 0)'>Discord Server = https://discord.gg/4cuASdHNm</font></b>")
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(255, 0, 0)'>Discord Server = https://discord.gg/csju8PBxM</font></b>")
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
 
 local caption = game.Players.LocalPlayer:WaitForChild("PlayerGui").MainUI.MainFrame.Caption
@@ -202,7 +204,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(80)
+        task.wait(110)
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
         if currentRoom ~= 50 and currentRoom ~= 51 then 
@@ -213,21 +215,21 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        wait(150)
+        wait(200)
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         wait(0)
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
         if currentRoom == 50 or currentRoom == 51 then
             -- Do nothing
         else
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/A-60-Nightmare-Mode"))()
+            loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/A-60%20(LSPLASH%20version)%20Spawner"))()
         end
     end
 end)()
 
 coroutine.wrap(function()
     while true do
-        wait(105)
+        wait(180)
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         wait(0)
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
@@ -241,7 +243,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        wait(math.random(180, 220))
+        wait(math.random(200, 220))
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         wait(0)
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
@@ -255,7 +257,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        wait(math.random(280, 300))
+        wait(math.random(280, 350))
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         wait(0)
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
@@ -269,7 +271,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        wait(math.random(350, 540))
+        wait(math.random(500, 600))
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
         if currentRoom == 50 or currentRoom == 51 then
             loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/B-60%20DOOR%2050"))()
