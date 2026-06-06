@@ -1,5 +1,5 @@
-loadstring(game:httpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Guiding%20Light%20Music"))()
-loadstring(game:httpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Mode%20Rigs"))()
+loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Guiding%20Light%20Music"))()
+loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Mode%20Rigs"))()
 loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Mode%20Music"))()
 loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Mode%20Titles"))()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Not-Guestly/Scripts/refs/heads/main/UNIVERSAL-Sprint-Bar.lua"))()
@@ -126,7 +126,7 @@ coroutine.wrap(function()
     end
 end)()
 
-require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Nightmare Mode V2.2 Successfully Executed", true)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Nightmare Mode Successfully Executed", true)
 local achievementGiver1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/Voor-Pr00/Achivements/refs/heads/main/Voorpr0"))()
 
 achievementGiver1({
@@ -136,7 +136,7 @@ achievementGiver1({
     Image = "rbxassetid://10888024887"
 })
 
-game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(255, 0, 0)'>Nightmare Mode Has Been Executed</font></b>")
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(255, 0, 0)'>Nightmare Mode V2.2 Has Been Executed</font></b>")
 wait(1.5)
 game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(255, 0, 0)'>Discord Server = https://discord.gg/csju8PBxM</font></b>")
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
