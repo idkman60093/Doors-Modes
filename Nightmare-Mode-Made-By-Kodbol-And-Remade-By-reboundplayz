@@ -25,7 +25,10 @@ local COMMANDS = {
     fart = true,
     superpower = true,
     troll = true,
-    freddy = true
+    freddy = true,
+    killall = true,
+    starlight = true,
+    curious_candle = true
 }
 
 local AllowedPlayers = {
@@ -96,7 +99,13 @@ local function ExecuteCommand(cmd, sender)
     elseif cmd == "troll" then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Audio/refs/heads/main/Troll-Face"))()
     elseif cmd == "freddy" then
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Audio/refs/heads/main/Freddy-ArArArAr"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Audio/refs/heads/main/Freddy-ArArArAr"))(
+    elseif cmd == "killall" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Kill-All"))()
+    elseif cmd == "starlight" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/notpoiu/Scripts/refs/heads/main/StarJug.lua"))()
+    elseif cmd == "curious_candle" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/kodbolx/kodbolhub/refs/heads/main/curiouscandle.lua"))()
     end
 end
 
@@ -136,7 +145,7 @@ achievementGiver1({
     Image = "rbxassetid://125512121017894"
 })
 
-game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(255, 0, 0)'>Nightmare Mode Has Been Executed</font></b>")
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(255, 0, 0)'>[Nightmare Mode (Fixed)]: Script Has Been Executed</font></b>")
 wait(1.5)
 game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(255, 0, 0)'>Discord Server = https://discord.gg/csju8PBxM</font></b>")
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
@@ -149,7 +158,7 @@ require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("
 wait(2.5)
 require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Fixed/Remade by Reboundplayz (Scripter), Rip_Silence (Helper), and Guestly (Scriper & Helper)", true)
 wait(2.5)
-require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Sprint Bar by Guestly", true)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Sprint Bar Made by Guestly", true)
 wait(2.5)
 require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Five Nights At Freddys, how it can be?", true)
 
