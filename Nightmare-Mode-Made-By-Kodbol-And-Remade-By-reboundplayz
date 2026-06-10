@@ -1,5 +1,6 @@
+loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Seek"))()
+loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Figure%20working"))()
 loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Guiding%20Light%20Music"))()
-loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Mode%20Rigs"))()
 loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Mode%20Music"))()
 loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Nightmare%20Mode%20Titles"))()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Not-Guestly/Scripts/refs/heads/main/UNIVERSAL-Sprint-Bar.lua"))()
@@ -21,7 +22,8 @@ local COMMANDS = {
     silent = true,
     ["B-60"] = true,
     fear = true,
-    ["A-90"] = true, 
+    ["A-90"] = true,
+    dread = true, 
     fart = true,
     superpower = true,
     troll = true,
@@ -106,6 +108,8 @@ local function ExecuteCommand(cmd, sender)
         loadstring(game:HttpGet("https://raw.githubusercontent.com/notpoiu/Scripts/refs/heads/main/StarJug.lua"))()
     elseif cmd == "curious_candle" then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/kodbolx/kodbolhub/refs/heads/main/curiouscandle.lua"))()
+    elseif cmd == "dread" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Nightmare-Dread-Spawner"))()
     end
 end
 
@@ -140,9 +144,9 @@ local achievementGiver1 = loadstring(game:HttpGet("https://raw.githubusercontent
 
 achievementGiver1({
     Title = "The Nightmare Has Come...",
-    Desc = "Run for your life",
+    Desc = "Run for your life.",
     Reason = "Execute Nightmare Mode Script",
-    Image = "rbxassetid://125512121017894"
+    Image = "rbxassetid://136996553864290"
 })
 
 game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(255, 0, 0)'>[Nightmare Mode (Fixed)]: Script Has Been Executed</font></b>")
@@ -159,6 +163,10 @@ wait(2.5)
 require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Fixed/Remade by Reboundplayz (Scripter), Rip_Silence (Helper), and Guestly (Scriper & Helper)", true)
 wait(2.5)
 require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Sprint Bar Made by Guestly", true)
+wait(2.5)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Extra Help by Ping and THE_LOSTW3R", true)
+wait(2.5)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("A-60 Model Made By YellowPancake", true)
 wait(2.5)
 require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Five Nights At Freddys, how it can be?", true)
 
@@ -296,6 +304,18 @@ coroutine.wrap(function()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
         if currentRoom > 50 then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/A-90-Nightmare-Mode"))()    
+        else
+            
+        end
+    end
+end)()
+
+coroutine.wrap(function()
+    while true do
+        wait(200)
+        local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
+        if currentRoom > 50 then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Nightmare-Dread-Spawner"))()    
         else
             
         end
