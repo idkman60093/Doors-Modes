@@ -25,7 +25,6 @@ local COMMANDS = {
     ["A-90"] = true,
     dread = true,
     trauma = true,
-    cease = true,
     fart = true,
     superpower = true,
     troll = true,
@@ -114,8 +113,6 @@ local function ExecuteCommand(cmd, sender)
         loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Nightmare-Dread-Spawner"))()
     elseif cmd == "trauma" then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Trauma-Spawner"))()
-    elseif cmd == "cease" then
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/KendrickFan59/privatev2/refs/heads/main/ceaser"))()
     end
 end
 
