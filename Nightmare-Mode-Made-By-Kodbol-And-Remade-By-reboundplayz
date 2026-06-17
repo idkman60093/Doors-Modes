@@ -164,7 +164,7 @@ coroutine.wrap(function()
     end
 end)()
 
-require(LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Nightmare Mode V2.2 Successfully Executed", true)
+require(LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Nightmare Mode V2.3 Successfully Executed", true)
 local achievementGiver1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/Voor-Pr00/Achivements/refs/heads/main/Voorpr0"))()
 
 achievementGiver1({
@@ -239,17 +239,22 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(math.random(25, 45))
+        task.wait(math.random(40, 70))
         loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Nightmare-Screech-Nightmare-Mode"))()
     end
 end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(110)
+        task.wait(120)
+        
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
-        if currentRoom ~= 50 and currentRoom ~= 51 then 
+        
+        local isSeekChase = workspace:FindFirstChild("SeekMovingNewClone", true) ~= nil
+        local bannedRooms = { [49] = true, [50] = true, [51] = true, [99] = true, [100] = true }
+        
+        if not bannedRooms[currentRoom] and not isSeekChase then
             loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Attraction%20Spawner"))()
         end
     end
@@ -257,10 +262,15 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(200)
+        task.wait(245)
+        
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
-        if currentRoom ~= 50 and currentRoom ~= 51 then
+        
+        local isSeekChase = workspace:FindFirstChild("SeekMovingNewClone", true) ~= nil
+        local bannedRooms = { [49] = true, [50] = true, [51] = true, [99] = true, [100] = true }
+        
+        if not bannedRooms[currentRoom] and not isSeekChase then
             loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/A-60%20(LSPLASH%20version)%20Spawner"))()
         end
     end
@@ -268,10 +278,15 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(155)
+        task.wait(165)
+        
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
-        if currentRoom ~= 50 and currentRoom ~= 51 then
+        
+        local isSeekChase = workspace:FindFirstChild("SeekMovingNewClone", true) ~= nil
+        local bannedRooms = { [49] = true, [50] = true, [51] = true, [99] = true, [100] = true }
+        
+        if not bannedRooms[currentRoom] and not isSeekChase then
             loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Fire%20Guardian%20Spawner"))()
         end
     end
@@ -279,10 +294,15 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(235)
+        task.wait(300)
+        
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
-        if currentRoom ~= 50 and currentRoom ~= 51 then
+        
+        local isSeekChase = workspace:FindFirstChild("SeekMovingNewClone", true) ~= nil
+        local bannedRooms = { [49] = true, [50] = true, [51] = true, [99] = true, [100] = true }
+        
+        if not bannedRooms[currentRoom] and not isSeekChase then
             loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Silent%20Spawner"))()
         end
     end
@@ -290,10 +310,15 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(math.random(280, 350))
+        task.wait(math.random(365, 420))
+        
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
-        if currentRoom ~= 50 and currentRoom ~= 51 then
+        
+        local isSeekChase = workspace:FindFirstChild("SeekMovingNewClone", true) ~= nil
+        local bannedRooms = { [49] = true, [50] = true, [51] = true, [99] = true, [100] = true }
+        
+        if not bannedRooms[currentRoom] and not isSeekChase then
             loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Fear%20Spawner"))()
         end
     end
@@ -301,10 +326,15 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(math.random(450, 475))
+        task.wait(math.random(470, 490))
+        
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
-        if currentRoom ~= 50 and currentRoom ~= 51 then
+        
+        local isSeekChase = workspace:FindFirstChild("SeekMovingNewClone", true) ~= nil
+        local bannedRooms = { [49] = true, [50] = true, [51] = true, [99] = true, [100] = true }
+        
+        if not bannedRooms[currentRoom] and not isSeekChase then
             loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Conjoinment%20Spawner"))()
         end
     end
@@ -312,7 +342,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(math.random(650, 685))
+        task.wait(math.random(600, 650))
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
         if currentRoom == 50 or currentRoom == 51 then
             loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/B-60%20DOOR%2050"))()
@@ -324,7 +354,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(math.random(30, 90))
+        task.wait(math.random(60, 100))
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
         if currentRoom > 50 then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/A-90-Nightmare-Mode"))()    
@@ -334,7 +364,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(200)
+        task.wait(210)
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
         if currentRoom > 50 then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Nightmare-Dread-Spawner"))()    
