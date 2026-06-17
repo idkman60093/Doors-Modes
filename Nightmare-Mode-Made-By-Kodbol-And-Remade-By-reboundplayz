@@ -326,7 +326,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(math.random(470, 490))
+        task.wait(math.random(490, 520))
         
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
@@ -342,7 +342,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(math.random(600, 650))
+        task.wait(math.random(630, 680))
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
         if currentRoom == 50 or currentRoom == 51 then
             loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/B-60%20DOOR%2050"))()
