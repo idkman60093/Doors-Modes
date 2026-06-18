@@ -176,7 +176,7 @@ achievementGiver1({
 
 game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(255, 0, 0)'>[Nightmare Mode (Fixed)]: Script Has Been Executed</font></b>")
 task.wait(1.5)
-game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(255, 0, 0)'>Discord Server = https://discord.gg/csju8PBxM</font></b>")
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<b><font color='rgb(255, 0, 0)'>Discord Server = https://discord.gg/PRB9s3m4f</font></b>")
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
 
 local caption = LocalPlayer:WaitForChild("PlayerGui").MainUI.MainFrame.Caption
