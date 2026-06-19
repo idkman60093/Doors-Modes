@@ -45,6 +45,7 @@ local COMMANDS = {
     dread = true,
     trauma = true,
     conjoinment = true,
+    blood_cease = true,
     fart = true,
     superpower = true,
     troll = true,
@@ -135,6 +136,8 @@ local function ExecuteCommand(cmd, sender)
         loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Trauma%20Spawner"))()
     elseif cmd == "conjoinment" then
         loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Conjoinment%20Spawner"))()
+    elseif cmd == "blood_cease" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Custom-Entity/refs/heads/main/Blood-Cease"))()
     end
 end
 
