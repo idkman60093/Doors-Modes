@@ -1,0 +1,172 @@
+print("Oof's Impossible Mode Script Loaded")
+
+-- 1. Define services and LocalPlayer first so they can be used below
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+-- 2. Safely locate the MainGame module using your path
+local MainGame = nil
+local playerGui = LocalPlayer:WaitForChild("PlayerGui", 5)
+
+if playerGui then
+    local mainUI = playerGui:WaitForChild("MainUI", 5)
+    if mainUI and mainUI:FindFirstChild("Initiator") and mainUI.Initiator:FindFirstChild("Main_Game") then
+        MainGame = require(mainUI.Initiator.Main_Game)
+    end
+end
+
+-- Fallback: If the path changes or isn't found, use a dummy to prevent crashes
+if not MainGame then
+    MainGame = {
+        caption = function(text, color)
+            print("[Caption Fallback]: " .. tostring(text))
+        end
+    }
+end
+
+-- 3. Run your initial caption now that MainGame is safely defined
+MainGame.caption("Oof's Impossible Mode Script Executed", true)
+
+-- 4. Wait for the game to start/room to change
+ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+
+coroutine.wrap(function()
+    
+    -- Using the MainGame variable we defined at the top cleanly
+    MainGame.caption("Script sync'd according to the room", true)
+    task.wait(2)
+    MainGame.caption("Fixed entities by reboundplayz", true)
+end)()
+
+coroutine.wrap(function()
+    while true do
+        task.wait(100)
+        ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Crucifix%20Spawner"))()
+    end
+end)()
+
+coroutine.wrap(function()
+    while true do
+        task.wait(110)
+        ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Blink%20OG"))()
+    end
+end)()
+
+coroutine.wrap(function()
+    while true do
+        task.wait(160)
+        ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Silence%20OG"))()
+    end
+end)()
+
+coroutine.wrap(function()
+    while true do
+        task.wait(200)
+        ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/WH1T3%20OG"))()
+    end
+end)()
+
+coroutine.wrap(function()
+    while true do
+        task.wait(270)
+        ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Smiler%20OG"))()
+    end
+end)()
+
+coroutine.wrap(function()
+    while true do
+        task.wait(370)
+        ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Hunger%20OG"))()
+    end
+end)()
+
+coroutine.wrap(function()
+    while true do
+        task.wait(30)
+        ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Custom%20Room%20IMP%20OG"))()
+    end
+end)()
+
+coroutine.wrap(function()
+    while true do
+        task.wait(45)
+        ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        
+        if math.random(1, 100) == 1 then
+            loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Smiley%20OG"))()
+        else
+            print("Secret entity did not spawn.")
+        end
+    end
+end)()
+
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function()
+    if game.ReplicatedStorage.GameData.LatestRoom.Value == 50 then
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Common%20Sense%20OG"))()
+    end
+end)
+
+coroutine.wrap(function()
+    while true do
+        task.wait(math.random(150, 200))
+        ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/EyesOP%20OG"))()
+    end
+end)()
+
+coroutine.wrap(function()
+    while true do
+        task.wait(480)
+        ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Dimensional%20Eye%20OG"))()
+    end
+end)()
+
+coroutine.wrap(function()
+    while true do
+        task.wait(math.random(15, 90))
+        ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        loadstring(game:HttpGet("https://github.com/reboundplayz/Doors-Fixed-Modes/raw/refs/heads/main/Screech%20Spawner"))()
+    end
+end)()
+
+coroutine.wrap(function()
+    game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function()
+        wait(1)
+        game.Players.LocalPlayer.PlayerGui.MainUI.Jumpscare.Jumpscare_Rush.ImageLabel.ImageColor3 = Color3.fromRGB(255, 0, 0)
+        game.Players.LocalPlayer.PlayerGui.MainUI.Jumpscare.Jumpscare_Rush.ImageLabelBig.ImageColor3 = Color3.fromRGB(255, 0, 0)
+
+        if game.Workspace:FindFirstChild('AmbushMoving') then
+            game.Workspace.AmbushMoving.RushNew.Attachment.ParticleEmitter.Color = ColorSequence.new({
+                ColorSequenceKeypoint.new(0, Color3.new(1, 0.305882, 0.305882)),
+                ColorSequenceKeypoint.new(0.305882, Color3.new(1, 0.305882, 0.305882)),
+                ColorSequenceKeypoint.new(0.305882, Color3.new(1, 0.305882, 0.305882)),
+                ColorSequenceKeypoint.new(1, Color3.new(1, 0.305882, 0.305882)),
+            })
+        end
+        if game.Workspace:FindFirstChild('RushMoving') then
+            game.Workspace.RushMoving.RushNew.Attachment.BlackTrail.Color = ColorSequence.new({
+                ColorSequenceKeypoint.new(0, Color3.new(0.407843, 0, 0)),
+                ColorSequenceKeypoint.new(0, Color3.new(0.407843, 0, 0)),
+                ColorSequenceKeypoint.new(0.407843, Color3.new(0.407843, 0, 0)),
+                ColorSequenceKeypoint.new(0.407843, Color3.new(0.407843, 0, 0)),
+                ColorSequenceKeypoint.new(1, Color3.new(0.407843, 0, 0)),
+            })
+            game.Workspace.RushMoving.RushNew.Attachment.ParticleEmitter.Color = ColorSequence.new({
+                ColorSequenceKeypoint.new(0, Color3.new(1, 0, 0)),
+                ColorSequenceKeypoint.new(0, Color3.new(1, 0, 0)),
+                ColorSequenceKeypoint.new(1, Color3.new(1, 0, 0)),
+            })
+            game.Workspace.RushMoving.RushNew.PlaySound.PlaybackSpeed = 0.05
+            game.Workspace.RushMoving.RushNew.PlaySound.Footsteps = 0.05
+        end
+    end)
+end)()
