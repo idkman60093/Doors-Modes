@@ -297,7 +297,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(300)
+        task.wait(325)
         
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
@@ -313,7 +313,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(math.random(365, 420))
+        task.wait(math.random(390, 420))
         
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
