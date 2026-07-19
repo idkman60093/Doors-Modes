@@ -1,6 +1,6 @@
 ---====== Load spawner ======---
 
-local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/DOORS-Entity-Spawner-V2/main/init.luau"))()
+local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/idkman60093/Doors-Modes/refs/heads/main/Entity%20Spawner%20V2"))()
 
 ---====== Create entity ======---
 
@@ -41,7 +41,8 @@ Delay = 0
 Damage = {
 Enabled = true,
 Range = 60,
-Amount = 150
+Amount = 150,
+DeathDelay = 3.7
 },
 Crucifixion = {
 Enabled = true,
@@ -240,8 +241,6 @@ ImageTransparency = 0.5
 }):Play()
 
 task.wait(0.75)
-
-game.Players.LocalPlayer.Character.Humanoid.Health = 0
 
 --// CLEANUP
 gui:Destroy()
