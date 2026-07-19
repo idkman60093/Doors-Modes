@@ -80,11 +80,12 @@ local CONST = {
 				Delay = 2,
 				Reversed = false
 			},
-			Damage = {
-				Enabled = true,
-				Range = 40,
-				Amount = 125,
-                IgnoreHiding = false
+            Damage = {
+                Enabled = true,
+                Range = 40,
+                Amount = 125,
+                IgnoreHiding = false,
+                DeathDelay = 0
 			},
 			Rebounding = {
 				Enabled = true,
@@ -440,8 +441,13 @@ local function DamagePlayer(entity: any)
     local newHealth = math.clamp(Humanoid.Health - config.Damage.Amount, 0, Humanoid.MaxHealth)
 
     -- Update health
-    Humanoid.Health = newHealth
     task.spawn(entity.RunCallback, entity, "OnDamagePlayer", newHealth)
+
+    if newHealth <= 0 then
+    task.wait(config.Damage.DeathDelay or 0)
+    end
+
+    Humanoid.Health = newHealth
 
     if newHealth == 0 then
         -- Death hints
