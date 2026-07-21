@@ -34,7 +34,7 @@ Reversed = false
 Rebounding = {
 Enabled = true,
 Type = "Ambush", -- "Blitz"
-Min = 7,
+Min = 6,
 Max = 7,
 Delay = 0
 },
@@ -52,7 +52,7 @@ Break = true
 },
 Death = {
 Type = "Guiding", -- "Curious"
-Hints = {"!!!!!!!!!!!!!!", "Uhhh... Okay.", "I really don't know where did that entity come from.", "Hide when this happens!"},
+Hints = {"!!!!!!!!!!!!!!!!!!", "Uhhh... Okay.", "I really don't know where did that entity come from.", "Hide when this happens!"},
 Cause = "Him"
 }
 })
@@ -145,8 +145,8 @@ Image2 = "rbxassetid://10657365540",
 
 Shake = true,
 
-Sound1 = {2663254285, {Volume = 15}},
-Sound2 = {7837535984, {Volume = 15}},
+Sound1 = {2663254285, {Volume = 12}},
+Sound2 = {7837535984, {Volume = 14}},
 
 Flashing = {
 false,
