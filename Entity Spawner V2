@@ -9,6 +9,8 @@
             |___/                                                   |___/         |_|
 ]]--
 
+-- bla
+
 if getgenv().VynixuEntitySpawnerV2 then return getgenv().VynixuEntitySpawnerV2 end
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Functions.lua"))()
@@ -284,6 +286,41 @@ local function PlayerHasItemEquipped(name: string): boolean
 end
 
 local function CrucifixEntity(entity: any, tool: Tool)
+task.spawn(function() 
+task.wait(0.2)
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local backpack = player:WaitForChild("Backpack")
+local character = player.Character or player.CharacterAdded:Wait()
+
+local found = false
+
+for _, v in ipairs(backpack:GetChildren()) do
+	if v:IsA("Tool") and v.Name == "Crucifix" then
+		v:Destroy()
+		found = true
+	end
+end
+
+if not found then
+	for _, v in ipairs(character:GetChildren()) do
+		if v:IsA("Tool") then
+			if v.Name == "Crucifix" then
+				v:Destroy()
+				found = true
+			end
+		end
+	end
+end
+
+for _, v in ipairs(backpack:GetChildren()) do
+	if v:IsA("Tool") and v.Name == "Crucifix" then
+		v:Destroy()
+	end
+end
+end)
+
 	local model = entity.Model
 	local config = entity.Config
 
