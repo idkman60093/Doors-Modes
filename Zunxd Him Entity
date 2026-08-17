@@ -15,7 +15,7 @@ Flicker = {
 Enabled = false,
 Duration = 1
 },
-Shatter = true,
+Shatter = false,
 Repair = false
 },
 Earthquake = {
@@ -42,7 +42,7 @@ Damage = {
 Enabled = true,
 Range = 60,
 Amount = 150,
-DeathDelay = 3.7
+DeathDelay = 3.8
 },
 Crucifixion = {
 Enabled = true,
